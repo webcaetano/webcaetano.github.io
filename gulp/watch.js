@@ -2,6 +2,7 @@
 
 var gulp = require('gulp');
 var browserSync = require('browser-sync');
+var path = require('path');
 var runSequence = require('run-sequence');
 var $ = require('gulp-load-plugins')();
 
@@ -9,11 +10,21 @@ function isOnlyChange(event) {
 	return event.type === 'changed';
 }
 
+function markdown(options,dest,file){
+	return gulp.src(file ? file : options.src + '/posts/**/*.md')
+	.pipe($.markdown())
+	.pipe($.cheerio(function ($$, file) {
+		var firstTitle = $$('h1').eq(0).text();
+		if(!firstTitle) return;
+		file.path = path.dirname(file.path)+'\\'+(firstTitle.replace(/\s+/g,'-').toLowerCase())+'\\index'+path.extname(file.path);
+	}))
+	.pipe(gulp.dest(dest));
+}
+
+
 module.exports = function(options) {
 	gulp.task('markdown', function () {
-		return gulp.src(options.src + '/posts/**/*.md')
-			.pipe($.markdown())
-			.pipe(gulp.dest(options.tmp+'/serve/posts'));
+		return markdown(options,options.tmp+'/serve')
 	});
 
 	gulp.task('watch', function (done) {
@@ -37,7 +48,7 @@ module.exports = function(options) {
 			});
 
 			gulp.watch(options.src + '/posts/**/*.md', function(event) {
-				gulp.start('markdown',function(){
+				markdown(options,options.tmp+'/serve',event.path).on('end',function(){
 					browserSync.reload();
 				});
 			});
