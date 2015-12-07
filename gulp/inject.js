@@ -34,13 +34,10 @@ module.exports = function(options) {
 			directory: 'bower_components'
 		};
 
-		return gulp.src(options.src + '/*.hbs')
-			.pipe(handlebars({test:'bola'},{
-			ignorePartials: true,
-			// partials : {
-			// 	footer : '<footer>the end</footer>'
-			// }
-			batch : [options.src+'/views']
+		return gulp.src(options.src + '/index.hbs')
+			.pipe(handlebars({},{
+				ignorePartials: true,
+				batch : [options.src+'/views']
 			}))
 			.pipe($.extname())
 			.pipe($.inject(injectStyles, injectOptions))

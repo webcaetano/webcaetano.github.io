@@ -2,6 +2,8 @@
 
 var gulp = require('gulp');
 var runSequence = require('run-sequence');
+var through = require('through2');
+var fs = require('fs');
 
 var $ = require('gulp-load-plugins')({
 	pattern: ['gulp-*', 'main-bower-files', 'uglify-save-license', 'del']
@@ -10,9 +12,9 @@ var $ = require('gulp-load-plugins')({
 module.exports = function(options) {
 
 
-	gulp.task('html', ['inject'], function () {
+	gulp.task('html', ['inject','markdown'], function () {
 		var assets;
-		return gulp.src(options.tmp + '/serve/*.html')
+		return gulp.src(options.tmp + '/serve/index.html')
 			.pipe(assets = $.useref.assets())
 			.pipe($.rev())
 			.pipe($.if('*.js', $.uglify()))
@@ -46,23 +48,19 @@ module.exports = function(options) {
 		.pipe(gulp.dest(options.dist + '/'));
 	});
 
-	gulp.task('rest', function (done) {
-		$.del([
-			options.dist + '/app',
-			options.dist + '/sass',
-		], done);
-	});
-
 	gulp.task('clean', function (done) {
 		$.del([
 			options.dist + '/scripts',
 			options.dist + '/styles',
+			options.dist + '/posts',
 			options.tmp + '/'
 		], done);
 	});
 
+
 	gulp.task('build',function(done){
-		runSequence('clean',['html', 'fonts', 'other'],'rest',done);
+		// runSequence('clean',['html', 'fonts', 'other'],'rest',done);
+		runSequence('clean',['html', 'other'],'posts:dist',done);
 	});
 
 	gulp.task('deploy',function(done){

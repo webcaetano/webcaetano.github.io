@@ -15,8 +15,12 @@ function markdown(options,dest,file){
 	.pipe($.markdown())
 	.pipe($.cheerio(function ($$, file) {
 		var firstTitle = $$('h1').eq(0).text();
-		if(!firstTitle) return;
-		file.path = path.dirname(file.path)+'\\'+(firstTitle.replace(/\s+/g,'-').toLowerCase())+'\\index'+path.extname(file.path);
+		if(!firstTitle) firstTitle=path.basename(file.path,path.extname(file.path));
+		file.path = path.join(path.dirname(file.path),
+			"/posts/",
+			firstTitle.replace(/\s+/g,'-').toLowerCase(),
+			'/index'+path.extname(file.path)
+		);
 	}))
 	.pipe(gulp.dest(dest));
 }
@@ -48,7 +52,8 @@ module.exports = function(options) {
 			});
 
 			gulp.watch(options.src + '/posts/**/*.md', function(event) {
-				markdown(options,options.tmp+'/serve',event.path).on('end',function(){
+				// markdown(options,options.tmp+'/serve',event.path).on('end',function(){
+				markdown(options,options.tmp+'/serve').on('end',function(){
 					browserSync.reload();
 				});
 			});
