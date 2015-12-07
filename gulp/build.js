@@ -19,7 +19,7 @@ module.exports = function(options) {
 			// .pipe($.replace('../../bower_components/font-awesome-less/fonts/', '../fonts/'))
 			// .pipe($.replace('../../bower_components/font-awesome-less/fonts/', '../fonts/'))
 			.pipe($.if('*.css', $.csso()))
-			.pipe($.if('*.css', $.replace('../images/', 'src/images/')))
+			.pipe($.if('*.css', $.replace('../images/', '../src/images/')))
 			.pipe(assets.restore())
 			.pipe($.useref())
 			.pipe($.revReplace())
