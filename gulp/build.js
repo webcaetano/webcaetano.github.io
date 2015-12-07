@@ -37,8 +37,9 @@ module.exports = function(options) {
 
 	gulp.task('other', function () {
 		return gulp.src([
-			options.src + '/**/*',
-			'!' + options.src + '/**/*.{css,js,less}'
+			options.src + '/favicon.ico',
+			options.src + '/404.html',
+			// '!' + options.src + '/**/*.{css,js,less}'
 		])
 		.pipe(gulp.dest(options.dist + '/'));
 	});
@@ -51,10 +52,18 @@ module.exports = function(options) {
 	});
 
 	gulp.task('clean', function (done) {
-		$.del([options.dist + '/', options.tmp + '/'], done);
+		$.del([
+			options.dist + '/scripts',
+			options.dist + '/styles',
+			options.tmp + '/'
+		], done);
 	});
 
 	gulp.task('build',function(done){
 		runSequence('clean',['html', 'fonts', 'other'],'rest',done);
 	});
+
+	gulp.task('deploy',function(done){
+		runSequence('build','p',done);
+	})
 };

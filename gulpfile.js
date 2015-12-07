@@ -7,7 +7,7 @@ var wrench = require('wrench');
 
 var options = {
 	src: 'src',
-	dist: 'dist',
+	dist: './',
 	tmp: '.tmp',
 	errorHandler: function(title) {
 		return function(err) {
