@@ -3,12 +3,19 @@
 var gulp = require('gulp');
 var browserSync = require('browser-sync');
 var runSequence = require('run-sequence');
+var $ = require('gulp-load-plugins')();
 
 function isOnlyChange(event) {
 	return event.type === 'changed';
 }
 
 module.exports = function(options) {
+	gulp.task('markdown', function () {
+		return gulp.src(options.src + '/posts/**/*.md')
+			.pipe($.markdown())
+			.pipe(gulp.dest(options.tmp+'/serve/posts'));
+	});
+
 	gulp.task('watch', function (done) {
 		runSequence('inject',['scripts:watch'],function(){
 			gulp.watch([options.src + '/*.html', options.src + '/*.html', 'bower.json'], function(event) {
@@ -27,6 +34,12 @@ module.exports = function(options) {
 				} else {
 					gulp.start('inject');
 				}
+			});
+
+			gulp.watch(options.src + '/posts/**/*.md', function(event) {
+				gulp.start('markdown',function(){
+					browserSync.reload();
+				});
 			});
 
 			gulp.watch(options.src + '/{app,views,components}/**/*.html', function(event) {

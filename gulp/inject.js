@@ -3,6 +3,10 @@
 var gulp = require('gulp');
 
 var $ = require('gulp-load-plugins')();
+var handlebars = require('gulp-compile-handlebars');
+// var glob = require('glob');
+var wiredep = require('wiredep').stream;
+// var path = require('path');
 
 var wiredep = require('wiredep').stream;
 
@@ -30,7 +34,15 @@ module.exports = function(options) {
 			directory: 'bower_components'
 		};
 
-		return gulp.src(options.src + '/*.html')
+		return gulp.src(options.src + '/*.hbs')
+			.pipe(handlebars({test:'bola'},{
+			ignorePartials: true,
+			// partials : {
+			// 	footer : '<footer>the end</footer>'
+			// }
+			batch : [options.src+'/views']
+			}))
+			.pipe($.extname())
 			.pipe($.inject(injectStyles, injectOptions))
 			.pipe($.inject(injectScripts, injectOptions))
 			.pipe(wiredep(wiredepOptions))
