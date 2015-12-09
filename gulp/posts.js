@@ -42,7 +42,11 @@ module.exports = function(options) {
 	gulp.task('markdown',['clean:posts'], function () {
 		// return markdown(options,options.tmp+'/serve')
 		return gulp.src(options.src + '/posts/**/*.md')
-		.pipe($.markdown())
+		.pipe($.markdown({
+			highlight: function(code) {
+				return require('highlight.js').highlightAuto(code).value;
+			}
+		}))
 		.pipe($.cheerio(function ($$, file) {
 			var firstTitle = $$('h1').eq(0).text();
 			if(!firstTitle) firstTitle=path.basename(file.path,path.extname(file.path));
