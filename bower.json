@@ -10,7 +10,7 @@
     "highlight":{
       "main":[
         "./src/highlight.js",
-        "./src/styles/github.css"
+        "./src/styles/monokai.css"
       ]
     }
   }

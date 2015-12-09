@@ -5,7 +5,11 @@ var gulp = require('gulp');
 var runSequence = require('run-sequence');
 var through = require('through2');
 var path = require('path');
+var emoji = require('node-emoji');
+var _ = require('lodash');
 var fs = require('fs');
+var emojize = require('emojize').emojize
+
 
 var $ = require('gulp-load-plugins')({
 	pattern: ['gulp-*', 'del']
@@ -18,9 +22,21 @@ module.exports = function(options) {
 	function posts(dest,template){
 		return gulp.src(options.tmp + '/serve/posts/**/*.html')
 		.pipe(through.obj(function (file, enc, callback) {
-			var newContent = template.replace(/\[\[POSTS\]\]/g,String(file.contents));
-			// newContent = newContent.replace(/<!-- BASE -->/g,'<base href="../../">')
+			var newContent = String(file.contents);
+			newContent = emojize(emoji.emojify(newContent));
+			var emojis = newContent.match(/<span class="emoji _.*?<\/span>/g);
+			if(emojis){
+				_.each(emojis,function(emoji,i){
+					console.log(emoji)
+					console.log(new RegExp(emoji,'g'))
+					console.log(emoji.replace(/<span class="emoji _/g,'').replace(/"><\/span>/g,''))
+					newContent = newContent.replace(new RegExp(emoji,'g'),'<img class="emoji" src="https://assets-cdn.github.com/images/icons/emoji/unicode/'+emoji.replace(/<span class="emoji _/g,'').replace(/"><\/span>/g,'')+'.png">')
+				})
 
+			}
+			console.log(newContent);
+
+			newContent = template.replace(/\[\[POSTS\]\]/g,newContent);
 			file.contents = new Buffer(newContent);
 			callback(null,file);
 		}))
