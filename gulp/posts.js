@@ -57,7 +57,8 @@ module.exports = function(options) {
 		.pipe($.markdown({
 			highlight: function(code) {
 				return require('highlight.js').highlightAuto(code).value;
-			}
+			},
+			header: true
 		}))
 		.pipe($.cheerio(function ($$, file) {
 			var firstTitle = $$('h1').eq(0).text();

@@ -35,7 +35,13 @@ module.exports = function(options) {
 		};
 
 		return gulp.src(options.src + '/index.hbs')
-			.pipe(handlebars({},{
+			.pipe(handlebars({
+				date:{
+					day:(new Date()).getYear(),
+					year:(new Date()).getFullYear(),
+					month:(new Date()).getMonth(),
+				}
+			},{
 				ignorePartials: true,
 				batch : [options.src+'/views']
 			}))
