@@ -10,8 +10,6 @@ var $ = require('gulp-load-plugins')({
 });
 
 module.exports = function(options) {
-
-
 	gulp.task('html', ['inject','markdown'], function () {
 		var assets;
 		return gulp.src(options.tmp + '/serve/index.html')

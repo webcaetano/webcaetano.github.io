@@ -15,7 +15,6 @@ var $ = require('gulp-load-plugins')({
 	pattern: ['gulp-*', 'del']
 });
 
-
 var homePage = 'about';
 
 module.exports = function(options) {
@@ -23,18 +22,15 @@ module.exports = function(options) {
 		return gulp.src(options.tmp + '/serve/posts/**/*.html')
 		.pipe(through.obj(function (file, enc, callback) {
 			var newContent = String(file.contents);
+
+			// emoji compile
 			newContent = emojize(emoji.emojify(newContent));
 			var emojis = newContent.match(/<span class="emoji _.*?<\/span>/g);
 			if(emojis){
 				_.each(emojis,function(emoji,i){
-					console.log(emoji)
-					console.log(new RegExp(emoji,'g'))
-					console.log(emoji.replace(/<span class="emoji _/g,'').replace(/"><\/span>/g,''))
 					newContent = newContent.replace(new RegExp(emoji,'g'),'<img class="emoji" src="https://assets-cdn.github.com/images/icons/emoji/unicode/'+emoji.replace(/<span class="emoji _/g,'').replace(/"><\/span>/g,'')+'.png">')
 				})
-
 			}
-			console.log(newContent);
 
 			newContent = template.replace(/\[\[POSTS\]\]/g,newContent);
 			file.contents = new Buffer(newContent);

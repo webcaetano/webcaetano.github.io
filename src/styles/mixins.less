@@ -19,6 +19,10 @@
 	border-radius: @px;
 }
 
+.inline-image(@img) {
+	background-image:data-uri('image/svg+xml;charset=UTF-8', @img);
+}
+
 .shadow(@str:0.75,@x:0,@y:1px,@dist:2px){
 	-webkit-box-shadow: @x @y @dist rgba(0,0,0,@str);
 	-moz-box-shadow: @x @y @dist rgba(0,0,0,@str);
