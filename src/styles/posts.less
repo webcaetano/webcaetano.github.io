@@ -2,15 +2,28 @@
 	background-color: #fff;
 	h1, h2, h3, h4, h5 {
 		.font-mont;
+		position: relative;
 		font-size: 3em;
 		padding-top: 5px;
 		margin-top:0;
 		margin-bottom:10px;
-		color: @color1;
+		color: @color2;
 		.transation(200ms);
 		cursor: pointer;
-		&:hover {
-			color: @color2;
+		// &:hover {
+		// 	color: @color2;
+		// }
+	}
+
+	h1 {
+		&:before  {
+			content: '';
+			position: absolute;
+			width: 90%;
+			height: 1px;
+			bottom: 0;
+			left: 0;
+			background-color: lighten(@color2, 50%);
 		}
 	}
 	// position: relative;
@@ -26,5 +39,6 @@
 	}
 
 	.font-open;
-	font-size: 0.9em;
+	font-size: 1em;
+	color: #5D5D5D;
 }
