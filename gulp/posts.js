@@ -92,6 +92,6 @@ module.exports = function(options) {
 	});
 
 	gulp.task('posts:dist',function(done){
-		runSequence('posts:make:dist','homepage',done)
+		runSequence('posts:make:dist','homepage:dist',done)
 	});
 };
