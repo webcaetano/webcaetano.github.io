@@ -1,14 +1,14 @@
 # About
 
-My name is Andre Caetano
+Hi! I'm 26 years old and i'm an Full Stack Game Developer :space_invader: <br>
+Glad to have you spend a short time with me.
 
-```javascript
-var a = function(x="test"){
-	return x;
-}
-console.log("heloo");
-```
+I'm an enthusiastic about gaming developing, really enjoy and have fun in doing it. <br>
 
-:tada:
-awdawd
-<!-- <div class="test"><i class="fa fa-globe"></i></div> -->
+During 2008 and 2012 i have been working in my own browser-based game as standalone. <br>
+The game called **Brgol** *(google it, there's many images from fan-blogs)*. <br>
+It's an very successfull soccer brazilian game.<br>
+I have decide to stop it on 2012 to focus in internacional content.
+
+Currently i'm dedicating to open-source projects and html5 games.<br>
+I have vast knowlegde in many languages (front and back), and in create assets like animated sprites and GUI.
