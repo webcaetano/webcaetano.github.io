@@ -15,6 +15,16 @@
 		// }
 	}
 
+	a:link, a:visited {
+		color: #4078c0;
+		text-decoration: none;
+	}
+
+	a:hover {
+		color: #4078c0;
+		text-decoration: underline;
+	}
+
 	.post-cover {
 		img {
 			.round(8px);
@@ -53,4 +63,16 @@
 	font-size: 1em;
 	color: #5D5D5D;
 	padding-bottom: 50px;
+	// line-height: 25px;
+	:not(h1):not(h2):not(h3):not(h4):not(h5){
+		line-height:28px;
+	}
+
+	.contact-icon  {
+		color: @color3;
+		// font-size: 1em;
+		&.fa-github {
+			font-size: 1.4em;
+		}
+	}
 }
