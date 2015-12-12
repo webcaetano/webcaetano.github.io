@@ -1,6 +1,6 @@
 # About
 
-Hi! I'm 26 years old and i'm an Full Stack Game Developer :space_invader: <br>
+Hi! I'm 26 years old and i'm an independent Game Developer :space_invader: <br>
 Glad to have you spend a short time with me.
 
 I'm an enthusiastic about gaming developing, really enjoy and have fun in doing it. <br>

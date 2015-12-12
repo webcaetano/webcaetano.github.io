@@ -15,6 +15,17 @@
 		// }
 	}
 
+	.post-cover {
+		img {
+			.round(8px);
+		}
+	}
+
+	iframe {
+		overflow: hidden;
+		border: 1px solid #f2f2f2;
+	}
+
 	h1 {
 		&:before  {
 			content: '';
@@ -23,7 +34,7 @@
 			height: 1px;
 			bottom: 0;
 			left: 0;
-			background-color: lighten(@color2, 50%);
+			background-color: lighten(@color3, 50%);
 		}
 	}
 	// position: relative;
@@ -41,4 +52,5 @@
 	.font-open;
 	font-size: 1em;
 	color: #5D5D5D;
+	padding-bottom: 50px;
 }

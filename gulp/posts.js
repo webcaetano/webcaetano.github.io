@@ -53,7 +53,10 @@ module.exports = function(options) {
 
 	gulp.task('markdown',['clean:posts'], function () {
 		// return markdown(options,options.tmp+'/serve')
-		return gulp.src(options.src + '/posts/**/*.md')
+		return gulp.src([
+			options.src + '/posts/**/*.md',
+			options.src + '/portfolio-posts/**/*.md',
+		])
 		.pipe($.markdown({
 			highlight: function(code) {
 				return require('highlight.js').highlightAuto(code).value;

@@ -46,7 +46,12 @@ module.exports = function(options) {
 				}
 			});
 
-			gulp.watch([options.src + '/posts/**/*.md',options.src + '/views/**/*.hbs','bower.json',options.src + '/index.hbs'], function(event) {
+			gulp.watch([
+				options.src + '/posts/**/*.md',
+				options.src + '/portfolio-posts/**/*.md',
+				options.src + '/views/**/*.hbs'
+				,'bower.json',options.src + '/index.hbs'
+			], function(event) {
 				// markdown(options,options.tmp+'/serve',event.path).on('end',function(){
 
 				// markdown(options,options.tmp+'/serve').on('end',function(){
