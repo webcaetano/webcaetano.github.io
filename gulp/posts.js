@@ -72,6 +72,8 @@ module.exports = function(options) {
 				'/index'+path.extname(file.path)
 			);
 		}))
+		// .pipe($.if('*.html', $.replace('src="images/portfolio/', 'src="../src/images/portfolio/')))
+		.pipe($.if('*.html', $.replace('src="images/', 'src="../src/images/')))
 		.pipe(gulp.dest(options.tmp+'/serve'));
 	});
 
