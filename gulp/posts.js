@@ -39,20 +39,7 @@ module.exports = function(options) {
 		.pipe(gulp.dest(dest));
 	}
 
-	gulp.task('homepage',function(){
-		return gulp.src(options.tmp + '/serve/posts/'+homePage+'/index.html')
-		.pipe($.replace('<base href="../../">',''))
-		.pipe(gulp.dest(options.tmp+'/serve'));
-	});
-
-	gulp.task('homepage:dist',function(){
-		return gulp.src(options.dist + '/posts/'+homePage+'/index.html')
-		.pipe($.replace('<base href="../../">',''))
-		.pipe(gulp.dest(options.dist+'/'));
-	});
-
-	gulp.task('markdown',['clean:posts'], function () {
-		// return markdown(options,options.tmp+'/serve')
+	function markdown(env){
 		return gulp.src([
 			options.src + '/posts/**/*.md',
 			options.src + '/portfolio-posts/**/*.md',
@@ -72,9 +59,30 @@ module.exports = function(options) {
 				'/index'+path.extname(file.path)
 			);
 		}))
-		// .pipe($.if('*.html', $.replace('src="images/portfolio/', 'src="../src/images/portfolio/')))
-		.pipe($.if('*.html', $.replace('src="images/', 'src="../src/images/')))
+		.pipe($.if(function(){
+			return env=='dist'
+		}, $.replace('src="images/', 'src="../src/images/')))
 		.pipe(gulp.dest(options.tmp+'/serve'));
+	}
+
+	gulp.task('homepage',function(){
+		return gulp.src(options.tmp + '/serve/posts/'+homePage+'/index.html')
+		.pipe($.replace('<base href="../../">',''))
+		.pipe(gulp.dest(options.tmp+'/serve'));
+	});
+
+	gulp.task('homepage:dist',function(){
+		return gulp.src(options.dist + '/posts/'+homePage+'/index.html')
+		.pipe($.replace('<base href="../../">',''))
+		.pipe(gulp.dest(options.dist+'/'));
+	});
+
+	gulp.task('markdown',['clean:posts'], function () {
+		return markdown();
+	});
+
+	gulp.task('markdown:dist',['clean:posts'], function () {
+		return markdown('dist');
 	});
 
 	gulp.task('clean:posts', function (done) {

@@ -10,7 +10,7 @@ var $ = require('gulp-load-plugins')({
 });
 
 module.exports = function(options) {
-	gulp.task('html', ['inject','markdown'], function () {
+	gulp.task('html', ['inject','markdown:dist'], function () {
 		var assets;
 		return gulp.src(options.tmp + '/serve/index.html')
 			.pipe(assets = $.useref.assets())
