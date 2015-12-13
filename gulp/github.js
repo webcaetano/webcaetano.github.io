@@ -68,10 +68,8 @@ module.exports = function(options) {
 			.pipe(git.commit((argv.m && argv!==true  ?  argv.m : 'Minor changes :coffee:')));
 	});
 
-	gulp.task('p', function(){
-		runSequence('git:commit','git:push',function(){
-			process.exit();
-		});
+	gulp.task('p', function(done){
+		runSequence('git:commit','git:push',done);
 	});
 
 	gulp.task('git:bump', function () {
