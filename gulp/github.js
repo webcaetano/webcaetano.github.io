@@ -9,6 +9,7 @@ var tag_version = require('gulp-tag-version');
 var mysqlDump = require('mysqldump');
 var runSequence = require('run-sequence');
 var argv = require('yargs').argv;
+var exec = require('sync-exec');
 
 
 module.exports = function(options) {
@@ -52,9 +53,12 @@ module.exports = function(options) {
 	})
 
 	// gulp.task('git:add',['mysql-backup'], function () { //hook mysql scheme to trigger at git add
-	gulp.task('git:add', function () {
-		return gulp.src(packageSrc)
-			.pipe(git.add({args: " -A"}));
+	gulp.task('git:add', function (done) {
+		console.log(exec([
+			'git add . -A',
+		].join("; ")));
+
+		done();
 	});
 
 	gulp.task('git:commit_release', ['git:add'], function () {
