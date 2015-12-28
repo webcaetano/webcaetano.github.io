@@ -1,3 +1,8 @@
 @webcaetano personal site
 
-Comming soon
+
+### Build an deploy 
+
+```
+gulp deploy
+```
