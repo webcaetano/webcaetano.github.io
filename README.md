@@ -2,7 +2,6 @@
 
 Feel free to fork and use it.
 
-
 ### Installation
 
 ```
