@@ -1,4 +1,3 @@
-
 'use strict';
 
 var gulp = require('gulp');
@@ -17,8 +16,10 @@ var $ = require('gulp-load-plugins')({
 var homePage = 'about';
 
 module.exports = function(options) {
-	function posts(dest,template){
+	function posts(dest){
 		return function posts(){
+			var template = String(fs.readFileSync('index.html'));
+
 			return gulp.src(options.tmp + '/serve/posts/**/*.html')
 			.pipe(through.obj(function (file, enc, callback) {
 				var newContent = String(file.contents);
@@ -87,19 +88,15 @@ module.exports = function(options) {
 		],{force:true});
 	});
 
-	gulp.task('markdown', gulp.series('clean:posts'), markdown());
+	gulp.task('markdown', gulp.series('clean:posts', markdown()));
 
 	gulp.task('markdown:dist', gulp.series('clean:posts', markdown('dist')));
 
-	gulp.task('posts:make:dist',function(done){
-		return posts(options.dist + '/posts',String(fs.readFileSync('index.html')))
-	});
+	gulp.task('posts:make:dist', posts(options.dist + '/posts'));
 
-	gulp.task('posts:make',function(done){
-		return posts(options.tmp + '/serve/posts',String(fs.readFileSync(options.tmp+'/serve/index.html')))
-	});
+	gulp.task('posts:make', posts(options.tmp + '/serve/posts'));
 
-	// gulp.task('posts', gulp.series(gulp.parallel('markdown','inject'),'posts:make','homepage'));
+	gulp.task('posts', gulp.series(gulp.parallel('markdown','inject'),'posts:make','homepage'));
 
 	gulp.task('posts:dist', gulp.series('posts:make:dist','homepage:dist'));
 };

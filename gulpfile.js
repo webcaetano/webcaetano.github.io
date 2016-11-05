@@ -22,13 +22,13 @@ var options = {
 
 _.each([
 	'github.js',
+	'scripts.js',
+	'styles.js',
+	'inject.js',
 	'posts.js',
-	// 'scripts.js',
-	// 'styles.js',
-	// 'watch.js',
-	// 'inject.js',
-	// 'build.js',
-	// 'server.js',
+	'watch.js',
+	'server.js',
+	'build.js',
 ],function(file){
 	require('./gulp/' + file)(options);
 });

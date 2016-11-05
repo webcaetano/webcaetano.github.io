@@ -34,7 +34,7 @@ module.exports = function(options) {
 
 		return gulp.src([
 			options.src + '/styles/index.less',
-			options.src + '/styles/vendor.less'
+			// options.src + '/styles/vendor.less'
 		])
 		.pipe(indexFilter)
 		.pipe($.inject(injectFiles, injectOptions))

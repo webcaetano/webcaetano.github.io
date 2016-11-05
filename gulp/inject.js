@@ -1,54 +1,74 @@
 'use strict';
 
 var gulp = require('gulp');
-
+var _ = require('lodash');
+var fs = require('fs');
 var $ = require('gulp-load-plugins')();
-var handlebars = require('gulp-compile-handlebars');
-// var glob = require('glob');
+var pkg = JSON.parse(fs.readFileSync('./package.json'));
 var wiredep = require('wiredep').stream;
-// var path = require('path');
 
-var wiredep = require('wiredep').stream;
 
 module.exports = function(options) {
-	gulp.task('inject', ['scripts', 'styles'], function () {
-		var injectStyles = gulp.src([
-			options.tmp + '/serve/{styles,components}/**/*.css',
-			'!' + options.tmp + '/serve/styles/vendor.css'
-		], { read: false });
 
-
-		var injectScripts = gulp.src([
-			options.tmp + '/serve/{app,components}/**/*.js',
-			// '!' + options.src + '/{app,components}/**/*.spec.js',
-			// '!' + options.src + '/{app,components}/**/*.mock.js'
-		], { read: false });
-
-		var injectOptions = {
-			ignorePath: [options.src, options.tmp + '/serve'],
-			addRootSlash: false
-		};
-
+	var inject = function(dev=true){
 		var wiredepOptions = {
-			//ignorePath: /^(\.\.\/)*\.\./
-			directory: 'bower_components'
+			directory: 'bower_components',
+			devDependencies: dev
 		};
 
-		return gulp.src(options.src + '/index.hbs')
-			.pipe(handlebars({
-				date:{
-					day:(new Date()).getYear(),
-					year:(new Date()).getFullYear(),
-					month:(new Date()).getMonth(),
+		return gulp.src(options.src + '/index.html')
+
+			.pipe($.inject(
+				gulp.src(
+					[
+						options.tmp + '/serve/scripts/**/*.js'
+					],
+					{read: false}
+				),
+				{
+					starttag: '<!-- inject:scripts:{{ext}} -->',
+					ignorePath: [
+						options.tmp + '/serve'
+					],
+					addRootSlash: false
 				}
-			},{
-				ignorePartials: true,
-				batch : [options.src+'/views']
-			}))
-			.pipe($.extname())
-			.pipe($.inject(injectStyles, injectOptions))
-			.pipe($.inject(injectScripts, injectOptions))
+			))
+
+			.pipe($.inject(
+				gulp.src(
+					[
+						options.tmp + '/serve/styles/**/*.css'
+					],
+					{read: false}
+				),
+				{
+					starttag: '<!-- inject:styles:{{ext}} -->',
+					ignorePath: [
+						options.tmp + '/serve'
+					],
+					addRootSlash: false
+				}
+			))
+
+
 			.pipe(wiredep(wiredepOptions))
+			// .pipe($.template({
+			// 	date:{
+			// 		day:(new Date()).getYear(),
+			// 		year:(new Date()).getFullYear(),
+			// 		month:(new Date()).getMonth(),
+			// 	}
+			// }))
 			.pipe(gulp.dest(options.tmp + '/serve'));
-	});
+	}
+
+	gulp.task('inject', gulp.series(gulp.parallel('scripts','styles'), function injectDev() {
+		return inject();
+	}));
+
+	gulp.task('inject:dist', gulp.series(gulp.parallel('scripts','styles'), function injectDev() {
+		return inject(false);
+	}));
 };
+
+

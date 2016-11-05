@@ -2,42 +2,62 @@
 
 var gulp = require('gulp');
 var browserSync = require('browser-sync');
-var util = require('util');
-var cp = require('child_process');
-var server;
+var open = require('gulp-open');
+// var util = require('util');
 
 module.exports = function(options) {
 
-	function browserSyncInit(baseDir, browser) {
-		browser = browser === undefined ? 'default' : browser;
-
-		var routes = null;
-		if(baseDir === options.src || (util.isArray(baseDir) && baseDir.indexOf(options.src) !== -1)) {
-			routes = {
-				'/bower_components': 'bower_components'
-			};
-		}
-
-		var server = {
-			baseDir: baseDir,
-			routes: routes
-		};
+	function browserSyncInit(baseDir, browser='default', done) {
+		// var routes = null;
+		// if(baseDir === options.src || (util.isArray(baseDir) && baseDir.indexOf(options.src) !== -1)) {
+		// 	routes = {
+		// 		'/bower_components': 'bower_components'
+		// 	};
+		// }
 
 		browserSync.instance = browserSync.init({
-			startPath: '/',
-			server: server,
+			startPath: options.folder,
+			server: {
+				baseDir: baseDir,
+				routes: {
+					'/bower_components': 'bower_components',
+					'/images': options.src+'/images',
+				}
+			},
 			browser: browser,
-			//proxy: 'localhost:8000',
-			// port:4000,
+			notify: false,
 			open: false
 		});
+
+		done();
 	}
 
-	gulp.task('serve', ['watch'], function () {
-		browserSyncInit([options.tmp + '/serve', options.src]);
+	gulp.task('open',function(){
+		return gulp.src('../')
+		.pipe(open({
+			uri: 'http://localhost:3000/'+options.folder+'/?dev_nomraid=1',
+			app: 'google chrome'
+		}));
 	});
 
-	gulp.task('serve:dist', ['build'], function () {
-		browserSyncInit(options.dist);
+	gulp.task('open:tps',function(){
+		return gulp.src('../')
+		.pipe(open({
+			uri: 'texture_sheets/atlas.tps',
+		}));
 	});
+
+	gulp.task('serve', gulp.series('watch', browserSyncInit.bind(null,[
+		options.tmp + '/serve',
+		'../',
+	],null)));
+
+	// gulp.task('serve:dist', gulp.series('build', browserSyncInit.bind(null,[
+	// 	'./'
+	// ],null)));
+
+	// gulp.task('serve:build', gulp.series(browserSyncInit.bind(null,[
+	// 	'./'
+	// ],null)));
 };
+
