@@ -2,7 +2,6 @@
 'use strict';
 
 var gulp = require('gulp');
-var runSequence = require('run-sequence');
 var through = require('through2');
 var path = require('path');
 var emoji = require('node-emoji');
@@ -19,50 +18,54 @@ var homePage = 'about';
 
 module.exports = function(options) {
 	function posts(dest,template){
-		return gulp.src(options.tmp + '/serve/posts/**/*.html')
-		.pipe(through.obj(function (file, enc, callback) {
-			var newContent = String(file.contents);
+		return function posts(){
+			return gulp.src(options.tmp + '/serve/posts/**/*.html')
+			.pipe(through.obj(function (file, enc, callback) {
+				var newContent = String(file.contents);
 
-			// emoji compile
-			newContent = emojize(emoji.emojify(newContent));
-			var emojis = newContent.match(/<span class="emoji _.*?<\/span>/g);
-			if(emojis){
-				_.each(emojis,function(emoji,i){
-					newContent = newContent.replace(new RegExp(emoji,'g'),'<img class="emoji" src="https://assets-cdn.github.com/images/icons/emoji/unicode/'+emoji.replace(/<span class="emoji _/g,'').replace(/"><\/span>/g,'')+'.png">')
-				})
-			}
+				// emoji compile
+				newContent = emojize(emoji.emojify(newContent));
+				var emojis = newContent.match(/<span class="emoji _.*?<\/span>/g);
+				if(emojis){
+					_.each(emojis,function(emoji,i){
+						newContent = newContent.replace(new RegExp(emoji,'g'),'<img class="emoji" src="https://assets-cdn.github.com/images/icons/emoji/unicode/'+emoji.replace(/<span class="emoji _/g,'').replace(/"><\/span>/g,'')+'.png">')
+					})
+				}
 
-			newContent = template.replace(/\[\[POSTS\]\]/g,newContent);
-			file.contents = new Buffer(newContent);
-			callback(null,file);
-		}))
-		.pipe(gulp.dest(dest));
+				newContent = template.replace(/\[\[POSTS\]\]/g,newContent);
+				file.contents = new Buffer(newContent);
+				callback(null,file);
+			}))
+			.pipe(gulp.dest(dest));
+		}
 	}
 
 	function markdown(env){
-		return gulp.src([
-			options.src + '/posts/**/*.md',
-			options.src + '/portfolio-posts/**/*.md',
-		])
-		.pipe($.markdown({
-			highlight: function(code) {
-				return require('highlight.js').highlightAuto(code).value;
-			},
-			header: true
-		}))
-		.pipe($.cheerio(function ($$, file) {
-			var firstTitle = $$('h1').eq(0).text();
-			if(!firstTitle) firstTitle=path.basename(file.path,path.extname(file.path));
-			file.path = path.join(path.dirname(file.path),
-				"/posts/",
-				firstTitle.replace(/\s+/g,'-').toLowerCase(),
-				'/index'+path.extname(file.path)
-			);
-		}))
-		.pipe($.if(function(){
-			return env=='dist'
-		}, $.replace('src="images/', 'src="../src/images/')))
-		.pipe(gulp.dest(options.tmp+'/serve'));
+		return function markdown(){
+			return gulp.src([
+				options.src + '/posts/**/*.md',
+				options.src + '/portfolio-posts/**/*.md',
+			])
+			.pipe($.markdown({
+				highlight: function(code) {
+					return require('highlight.js').highlightAuto(code).value;
+				},
+				header: true
+			}))
+			.pipe($.cheerio(function ($$, file) {
+				var firstTitle = $$('h1').eq(0).text();
+				if(!firstTitle) firstTitle=path.basename(file.path,path.extname(file.path));
+				file.path = path.join(path.dirname(file.path),
+					"/posts/",
+					firstTitle.replace(/\s+/g,'-').toLowerCase(),
+					'/index'+path.extname(file.path)
+				);
+			}))
+			.pipe($.if(function(){
+				return env=='dist'
+			}, $.replace('src="images/', 'src="../src/images/')))
+			.pipe(gulp.dest(options.tmp+'/serve'));
+		}
 	}
 
 	gulp.task('homepage',function(){
@@ -77,20 +80,16 @@ module.exports = function(options) {
 		.pipe(gulp.dest(options.dist+'/'));
 	});
 
-	gulp.task('markdown',['clean:posts'], function () {
-		return markdown();
-	});
-
-	gulp.task('markdown:dist',['clean:posts'], function () {
-		return markdown('dist');
-	});
 
 	gulp.task('clean:posts', function (done) {
-		$.del([
+		return $.del([
 			options.tmp + '/serve/posts'
-		], done);
+		],{force:true});
 	});
 
+	gulp.task('markdown', gulp.series('clean:posts'), markdown());
+
+	gulp.task('markdown:dist', gulp.series('clean:posts', markdown('dist')));
 
 	gulp.task('posts:make:dist',function(done){
 		return posts(options.dist + '/posts',String(fs.readFileSync('index.html')))
@@ -100,11 +99,7 @@ module.exports = function(options) {
 		return posts(options.tmp + '/serve/posts',String(fs.readFileSync(options.tmp+'/serve/index.html')))
 	});
 
-	gulp.task('posts',function(done){
-		runSequence(['markdown','inject'],'posts:make','homepage',done)
-	});
+	// gulp.task('posts', gulp.series(gulp.parallel('markdown','inject'),'posts:make','homepage'));
 
-	gulp.task('posts:dist',function(done){
-		runSequence('posts:make:dist','homepage:dist',done)
-	});
+	gulp.task('posts:dist', gulp.series('posts:make:dist','homepage:dist'));
 };
