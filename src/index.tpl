@@ -22,18 +22,17 @@
 	<!-- endbuild -->
 </head>
 <body>
-	<div class="all">
-		<%= menu %>
+	<div class="all" align="center">
+		<%= header %>
 		<div class="mid">
-			<div class="container posts">
+			<div class="posts">
 				<%= content %>
-
 			</div>
-			<%= footer %>
 		</div>
+		<%= footer %>
 	</div>
 
-	<script>
+	<!-- <script>
 	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -42,7 +41,7 @@
 	ga('create', 'UA-48138722-11', 'auto');
 	ga('send', 'pageview');
 
-	</script>
+	</script> -->
 
 	<!-- build:js(./) scripts/vendor.js -->
 	<script src="bower_components/highlight/src/highlight.js"></script>

@@ -27,7 +27,7 @@ module.exports = function(options) {
 				// var folders = pathData.dir.split('/');
 				// var lastFolder = _.last(folders);
 
-				var menu = _.template(String(fs.readFileSync('src/partials/menu.tpl')))({
+				var header = _.template(String(fs.readFileSync('src/partials/header.tpl')))({
 					init,
 					version:pkg.version,
 					home:main,
@@ -43,7 +43,7 @@ module.exports = function(options) {
 
 				var newContent = _.template(template)({
 					content,
-					menu,
+					header,
 					init,
 					footer,
 					version:pkg.version,
