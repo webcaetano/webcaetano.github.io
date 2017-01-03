@@ -21,19 +21,19 @@ var options = {
 };
 
 _.each([
-	'github.js',
-	'scripts.js',
-	'styles.js',
-	'inject.js',
-	'posts.js',
-	'watch.js',
-	'server.js',
-	'build.js',
+	// 'github.js',
+	// 'scripts.js',
+	// 'styles.js',
+	// 'inject.js',
+	// 'posts.js',
+	// 'watch.js',
+	// 'server.js',
+	// 'build.js',
+	'markdown.js',
 ],function(file){
 	require('./gulp/' + file)(options);
 });
 
-// gulp.task('default', gulp.series('clean','serve'));
 gulp.task('default',function(done){
 	done();
 })

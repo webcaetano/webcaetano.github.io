@@ -24,6 +24,8 @@ module.exports = function(options) {
 		], function(event) {
 			browserSync.reload();
 		});
+
+		done();
 	}));
 
 };
