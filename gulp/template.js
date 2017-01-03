@@ -65,7 +65,8 @@ module.exports = function(options) {
 	gulp.task('clean:siteTmp', function (done) {
 		return $.del([
 			// dist+'/',
-			options.tmp + '/site/'
+			options.tmp + '/site/portfolio-posts',
+			options.tmp + '/site/posts',
 		],{force:true});
 	});
 

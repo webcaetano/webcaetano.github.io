@@ -25,11 +25,11 @@ _.each([
 	'scripts.js',
 	'styles.js',
 	'inject.js',
-	// 'watch.js',
-	// 'server.js',
-	// 'build.js',
 	'markdown.js',
 	'template.js',
+	'watch.js',
+	'server.js',
+	// 'build.js',
 ],function(file){
 	require('./gulp/' + file)(options);
 });
