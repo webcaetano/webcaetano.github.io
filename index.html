@@ -3,36 +3,37 @@
 <head>
 	
 	<meta charset="utf-8">
-	<title>WebCaetano</title>
+	<title>webCaetano</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width">
 	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="styles/vendor.css">
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-	<link rel="stylesheet" href="styles/styles.css">
+	<!-- build:css(./) styles/vendor.css -->
+	<link rel="stylesheet" type="text/css" href="/bower_components/highlight/src/styles/monokai.css">
+	<!-- endbuild -->
+
+	<!-- build:css({.tmp/site,site}) styles/styles.css -->
+	<!-- inject:styles:css -->
+	<link rel="stylesheet" href="styles/index.css">
+	<!-- endinject -->
+	<!-- endbuild -->
 </head>
 <body>
-	<!--[if lt IE 10]>
-		<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-	<![endif]-->
-	{{> cover}}
-	<div class="container posts">
-		<h1 id="about">About</h1>
-<p>Hi! I&apos;m 26 years old and i&apos;m an independent Game Developer <img class="emoji" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f47e.png"> <br>
-Glad to have you spend a short time with me.</p>
-<p>I&apos;m an enthusiastic about gaming developing, really enjoy and have fun in doing it. <br></p>
-<p>During 2008 to 2013 i have been working in my own browser-based game as standalone. <br>
-The game called <strong>Brgol</strong> <em>(google it, there&apos;s many images from fan-blogs)</em>. <br>
-It&apos;s was an very successfull soccer brazilian game. <img class="emoji" src="https://assets-cdn.github.com/images/icons/emoji/unicode/26bd.png"><br>
-I have decide to stop it on 2013 to focus in internacional content.</p>
-<p>Currently i&apos;m dedicating to open-source projects and html5 games.<br>
-I have vast knowlegde in many languages (front and back), and in create assets like animated sprites and GUI.</p>
-<p>Are you looking for <b>a developer who cares about sprites</b> or 
-<b>a designer who enjoy code</b> in the US, Canada or UK? <i class="flag flag-us"></i> <i class="flag flag-ca"></i> <i class="flag flag-gb"></i><br> 
-I&apos;m both, and if you&apos;ve got an exciting gig, I&apos;d love to know.</p>
+	<div class="all">
+		menu
 
+		<div class="mid">
+			<div class="container posts">
+				<p>home page</p>
+
+
+			</div>
+			footer
+
+		</div>
 	</div>
 
 	<script>
@@ -41,17 +42,22 @@ I&apos;m both, and if you&apos;ve got an exciting gig, I&apos;d love to know.</p
 	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-	ga('create', 'UA-48138722-7', 'auto');
+	ga('create', 'UA-48138722-11', 'auto');
 	ga('send', 'pageview');
 
 	</script>
 
+	<!-- build:js(./) scripts/vendor.js -->
+	<script src="bower_components/highlight/src/highlight.js"></script>
+	<!-- endbuild -->
 
-	<script src="scripts/vendor.js"></script>
 
+	<!-- build:js({.tmp/site,site}) scripts/scripts.js -->
+	<!-- inject:scripts:js -->
+	<script src="scripts/index.js"></script>
+	<!-- endinject -->
+	<!-- endbuild -->
 
-	<script src="scripts/scripts.js"></script>
-
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
 </body>
 </html>

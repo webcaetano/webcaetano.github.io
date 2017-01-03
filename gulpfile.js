@@ -29,7 +29,7 @@ _.each([
 	'template.js',
 	'watch.js',
 	'server.js',
-	// 'build.js',
+	'build.js',
 ],function(file){
 	require('./gulp/' + file)(options);
 });

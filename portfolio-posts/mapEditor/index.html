@@ -1,26 +1,34 @@
 <!doctype html>
 <html>
 <head>
-	<base href="../../">
+	<base href="../../../">
 	<meta charset="utf-8">
-	<title>WebCaetano</title>
+	<title>webCaetano</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width">
 	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-	<link rel="stylesheet" href="styles/vendor.css">
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-	<link rel="stylesheet" href="styles/styles.css">
+	<!-- build:css(./) styles/vendor.css -->
+	<link rel="stylesheet" type="text/css" href="/bower_components/highlight/src/styles/monokai.css">
+	<!-- endbuild -->
+
+	<!-- build:css({.tmp/site,site}) styles/styles.css -->
+	<!-- inject:styles:css -->
+	<link rel="stylesheet" href="styles/index.css">
+	<!-- endinject -->
+	<!-- endbuild -->
 </head>
 <body>
-	<!--[if lt IE 10]>
-		<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-	<![endif]-->
-	{{> cover}}
-	<div class="container posts">
-		<h1 id="map-editor">Map Editor</h1>
-<div class="post-cover"><img src="../src/images/portfolio/mapEditCover.png"></div>
+	<div class="all">
+		menu
+
+		<div class="mid">
+			<div class="container posts">
+				<h1 id="map-editor">Map Editor</h1>
+<div class="post-cover"><img src="images/portfolio/mapEditCover.png"></div>
 
 <div class="post-header">
     <div class="date"><i class="fa fa-calendar"></i> 08/12/2015</div>
@@ -43,6 +51,11 @@ Write on <strong>Flash</strong>.</p>
 </ul>
 <iframe src="http://45.55.171.155:3000/mapEdit" width="700" height="600" scrolling="no"></iframe>
 
+
+			</div>
+			footer
+
+		</div>
 	</div>
 
 	<script>
@@ -51,17 +64,22 @@ Write on <strong>Flash</strong>.</p>
 	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-	ga('create', 'UA-48138722-7', 'auto');
+	ga('create', 'UA-48138722-11', 'auto');
 	ga('send', 'pageview');
 
 	</script>
 
+	<!-- build:js(./) scripts/vendor.js -->
+	<script src="bower_components/highlight/src/highlight.js"></script>
+	<!-- endbuild -->
 
-	<script src="scripts/vendor.js"></script>
 
+	<!-- build:js({.tmp/site,site}) scripts/scripts.js -->
+	<!-- inject:scripts:js -->
+	<script src="scripts/index.js"></script>
+	<!-- endinject -->
+	<!-- endbuild -->
 
-	<script src="scripts/scripts.js"></script>
-
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
 </body>
 </html>

@@ -1,40 +1,72 @@
 'use strict';
 
 var gulp = require('gulp');
+var exec = require('sync-exec');
 
 var $ = require('gulp-load-plugins')({
 	pattern: ['gulp-*', 'del']
 });
 
 module.exports = function(options) {
-	gulp.task('html', gulp.series('inject','markdown:dist', function () {
-		return gulp.src(options.tmp + '/serve/index.html')
+	var dist = '';
+	gulp.task('html', gulp.series('inject',function () {
+		return gulp.src(options.tmp + '/site/injected.tpl')
 			.pipe($.useref())
+			.pipe($.if('*.html', $.replace('bower_components', '../bower_components')))
 			.pipe($.if('*.js', $.preprocess({context: {dist: true}})))
 			.pipe($.if('*.js', $.uglify()))
 			.pipe($.if('*.css', $.cssmin()))
-			.pipe($.if('*.css', $.replace('../images/', '../src/images/')))
-			.pipe(gulp.dest(options.dist + '/'))
-			.pipe($.size({ title: options.dist + '/', showFiles: true }));
-	}));
+			.pipe($.if('*.js',gulp.dest(dist+'/')))
+			.pipe(gulp.dest('./'))
+			.pipe($.size({ title: dist+'/', showFiles: true }));
+	},'template:dist'));
 
-	gulp.task('other', function () {
-		return gulp.src([
-			options.src + '/favicon.ico',
-		])
-		.pipe(gulp.dest(options.dist + '/'));
-	});
+	// gulp.task('copy:docs', function () {
+	// 	return gulp.src([
+	// 		// options.src + '/favicon.ico',
+	// 		options.tmp + '/site/docs/**/*.html',
+	// 	])
+	// 	.pipe(gulp.dest('siteDist/docs'));
+	// });
 
-	gulp.task('clean', function (done) {
+	gulp.task('clean:siteDist', function (done) {
 		return $.del([
-			options.dist + '/scripts',
-			options.dist + '/styles',
-			options.dist + '/posts',
-			options.tmp + '/'
+			// dist+'/',
+			'index.html',
+			'styles',
+			'scripts',
+			'posts',
+			'portfolio-posts',
 		],{force:true});
 	});
 
-	gulp.task('build', gulp.series('clean',gulp.parallel('html', 'other'),'posts:dist'));
+	gulp.task('clean:tpl:dist', function (done) {
+		return $.del([
+			'./injected.tpl',
+		],{force:true});
+	});
 
-	gulp.task('deploy', gulp.series('build','p'))
+	gulp.task('build', gulp.series(
+		'clean:siteDist',
+		gulp.parallel(
+			'html'
+			// 'other'
+		),
+		'clean:tpl:dist'
+		// 'copy:docs'
+	));
+
+	gulp.task('deploy:site',gulp.series('build',function(done){
+		var c = [
+			'cd '+dist,
+			'git init',
+			'git add .',
+			'git commit -m "Deploy to Github Pages"',
+			'git push --force git@github.com:webcaetano/craft.git master:gh-pages' // change adress to you repo
+		].join(" && ")
+		console.log(exec(c));
+		done();
+	}));
+
+	// gulp.task('deploy:site:build',gulp.series('build:site','deploy:site'))
 };

@@ -72,10 +72,10 @@ module.exports = function(options) {
 
 	_.each([
 		{
-			dest:'',
+			dest:'.',
 			name:':dist',
 			init:'',
-			template:'injected.tpl'
+			template:options.tmp + '/site/injected.tpl'
 		},
 		{
 			dest:options.tmp + '/site',
