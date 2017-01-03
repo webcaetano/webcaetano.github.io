@@ -55,7 +55,7 @@ module.exports = function(options) {
 	gulp.task('clean:docs', function (done) {
 		return $.del([
 			options.tmp + '/site/posts',
-			options.tmp + '/site/portofolio-posts',
+			options.tmp + '/site/portfolio-posts',
 			options.tmp + '/site/partials',
 		],{force:true});
 	});
@@ -64,7 +64,7 @@ module.exports = function(options) {
 			'src/portfolio-posts/*.md',
 		],
 		options.tmp+'/site',
-		"/portofolio-posts/"
+		"/portfolio-posts/"
 	)));
 
 	gulp.task('markdown:posts', gulp.series(markdown([

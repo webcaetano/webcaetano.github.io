@@ -21,15 +21,15 @@ var options = {
 };
 
 _.each([
-	// 'github.js',
-	// 'scripts.js',
-	// 'styles.js',
-	// 'inject.js',
-	// 'posts.js',
+	'github.js',
+	'scripts.js',
+	'styles.js',
+	'inject.js',
 	// 'watch.js',
 	// 'server.js',
 	// 'build.js',
 	'markdown.js',
+	'template.js',
 ],function(file){
 	require('./gulp/' + file)(options);
 });

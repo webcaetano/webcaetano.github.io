@@ -16,19 +16,19 @@ module.exports = function(options) {
 			devDependencies: dev
 		};
 
-		return gulp.src(options.src + '/index.html')
+		return gulp.src('src/index.tpl')
 
 			.pipe($.inject(
 				gulp.src(
 					[
-						options.tmp + '/serve/scripts/**/*.js'
+						options.tmp + '/site/scripts/**/*.js'
 					],
 					{read: false}
 				),
 				{
 					starttag: '<!-- inject:scripts:{{ext}} -->',
 					ignorePath: [
-						options.tmp + '/serve'
+						options.tmp + '/site'
 					],
 					addRootSlash: false
 				}
@@ -37,21 +37,23 @@ module.exports = function(options) {
 			.pipe($.inject(
 				gulp.src(
 					[
-						options.tmp + '/serve/styles/**/*.css'
+						options.tmp + '/site/styles/**/*.css'
 					],
 					{read: false}
 				),
 				{
 					starttag: '<!-- inject:styles:{{ext}} -->',
 					ignorePath: [
-						options.tmp + '/serve'
+						options.tmp + '/site'
 					],
 					addRootSlash: false
 				}
 			))
 
 
-			.pipe(wiredep(wiredepOptions))
+			// .pipe(wiredep({
+			// 	include:['bower_components/lodash/lodash.js']
+			// }))
 			// .pipe($.template({
 			// 	date:{
 			// 		day:(new Date()).getYear(),
@@ -59,16 +61,20 @@ module.exports = function(options) {
 			// 		month:(new Date()).getMonth(),
 			// 	}
 			// }))
-			.pipe(gulp.dest(options.tmp + '/serve'));
+			.pipe($.rename(function (path) {
+				// path.extname = ".html"
+				path.basename = "injected"
+			}))
+			.pipe(gulp.dest(options.tmp + '/site'));
 	}
 
 	gulp.task('inject', gulp.series(gulp.parallel('scripts','styles'), function injectDev() {
 		return inject();
 	}));
 
-	gulp.task('inject:dist', gulp.series(gulp.parallel('scripts','styles'), function injectDev() {
-		return inject(false);
-	}));
+	// gulp.task('inject:site:dist', gulp.series(gulp.parallel('scripts','styles'), function injectDev() {
+	// 	return inject(false);
+	// }));
 };
 
 
