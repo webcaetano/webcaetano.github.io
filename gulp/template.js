@@ -13,12 +13,19 @@ var $ = require('gulp-load-plugins')({
 });
 
 module.exports = function(options) {
-	function templating(files,folder,templateDir,init='',main=false){
+	function templating(files,folder,templateDir,init='',data={},main=false){
 		return function tpl(){
 			var template = String(fs.readFileSync(templateDir));
+
 			var footer = _.template(String(fs.readFileSync('src/partials/footer.tpl')))({
 				version:pkg.version,
 				init,
+			});
+
+			var header = _.template(String(fs.readFileSync('src/partials/header.tpl')))({
+				init,
+				version:pkg.version,
+				home:main,
 			});
 
 			return gulp.src(files)
@@ -27,12 +34,7 @@ module.exports = function(options) {
 				// var folders = pathData.dir.split('/');
 				// var lastFolder = _.last(folders);
 
-				var header = _.template(String(fs.readFileSync('src/partials/header.tpl')))({
-					init,
-					version:pkg.version,
-					home:main,
-					// name:lastFolder,
-				});
+
 
 				// var content = _.template(String(file.contents)
 				// .replace(/<!-- protosTpl -->/g,"<%=protosTpl%>"))({
@@ -45,6 +47,7 @@ module.exports = function(options) {
 					content,
 					header,
 					init,
+					data,
 					footer,
 					version:pkg.version,
 				});
@@ -61,6 +64,14 @@ module.exports = function(options) {
 		}
 	}
 
+	var getPosts = function(dir=''){
+		return _.map(glob.sync(dir),function(file){
+			var p = path.parse(file)
+			return p.name;
+		});
+	}
+
+	console.log(getPosts('src/portfolio-posts/*.md'))
 
 	gulp.task('clean:siteTmp', function (done) {
 		return $.del([
@@ -88,6 +99,9 @@ module.exports = function(options) {
 			options.tmp + '/site/portfolio-posts/**/*.html',
 			val.dest+'/portfolio-posts/',
 			val.template,
+			{
+
+			},
 			val.init
 		)));
 
@@ -95,6 +109,9 @@ module.exports = function(options) {
 			options.tmp + '/site/posts/**/*.html',
 			val.dest+'/posts/',
 			val.template,
+			{
+				// posts:
+			},
 			val.init
 		)));
 

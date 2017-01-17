@@ -1,4 +1,6 @@
-# About
+<!-- header
+title: About
+header -->
 
 Hi! I'm 26 years old and i'm an independent Game Developer :space_invader: <br>
 Glad to have you spend a short time with me.

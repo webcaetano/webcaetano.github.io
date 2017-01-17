@@ -1,17 +1,18 @@
-# Demo Socket Game
+<!-- header
+title: Demo Socket Game
+date: 12/08/2015
+autor: webcaetano
+cover: images/posts/socketGame.png
+thumb: images/thumb/socketGame.png
+tags:
+	- Flash
+	- Socket.io
+	- Isometric
+header -->
+
+<!-- post-header -->
 
 <div class="post-cover"><img src="images/portfolio/socketGameCover.png"></div>
-
-<div class="post-header">
-	<div class="date"><i class="fa fa-calendar"></i> 08/12/2015</div>
-	<div class="author"><i class="fa fa-user"></i> @webcaetano</div>
-	<div class="tags"><i class="fa fa-tag"></i><span class="tags-head">Tags</span> 
-		<div class="tag">Flash</div>
-		<div class="tag">Socket.io</div>
-		<div class="tag">Isometric</div>
-	</div>
-</div>
-
 
 Multiplayer isometric plataform, with tilesets.<br>
 Monsters movements are operated by server.<br>
