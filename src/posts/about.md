@@ -2,10 +2,10 @@
 title: About
 header -->
 
-Hi! I'm 26 years old and i'm an independent Game Developer :space_invader: <br>
+Hi! I'm 26 years old and i'm an Indie Game Developer :space_invader: <br>
 Glad to have you spend a short time with me.
 
-I'm an enthusiastic about gaming developing, really enjoy and have fun in doing it. <br>
+I'm an enthusiastic about gaming developing, really enjoy and have fun in doing it.<br>
 
 During 2008 to 2013 i have been working in my own browser-based game as standalone. <br>
 The game called **Brgol** *(google it, there's many images from fan-blogs)*. <br>
@@ -18,3 +18,16 @@ I have vast knowlegde in many languages (front and back), and in create assets l
 Are you looking for <b>a developer who cares about sprites</b> or 
 <b>a designer who enjoy code</b> in the US, Canada or UK? <i class="flag flag-us"></i> <i class="flag flag-ca"></i> <i class="flag flag-gb"></i><br /> 
 I'm both, and if you've got an exciting gig, I'd love to know.
+
+
+```javascript
+
+var a = 'test';
+
+var b = function(){
+	
+}
+
+
+b();
+```

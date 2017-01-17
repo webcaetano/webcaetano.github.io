@@ -2,8 +2,11 @@
 
 var gulp = require('gulp');
 var path = require('path');
+var through = require('through2');
 var _ = require('lodash');
 var fs = require('fs');
+var emoji = require('node-emoji');
+var emojize = require('emojize').emojize
 
 var $ = require('gulp-load-plugins')({
 	pattern: ['gulp-*', 'del']
@@ -19,6 +22,23 @@ module.exports = function(options) {
 				},
 				header: true
 			}));
+
+
+			stream.pipe(through.obj(function (file, enc, callback) {
+				var newContent = String(file.contents);
+
+				// emoji compile
+				newContent = emojize(emoji.emojify(newContent));
+				var emojis = newContent.match(/<span class="emoji _.*?<\/span>/g);
+				if(emojis){
+					_.each(emojis,function(emoji,i){
+						newContent = newContent.replace(new RegExp(emoji,'g'),'<img class="emoji" src="https://assets-cdn.github.com/images/icons/emoji/unicode/'+emoji.replace(/<span class="emoji _/g,'').replace(/"><\/span>/g,'')+'.png">')
+					})
+				}
+
+				file.contents = new Buffer(newContent);
+				callback(null,file);
+			}))
 
 			if(!main){
 				stream.pipe($.cheerio(function ($$, file) {
