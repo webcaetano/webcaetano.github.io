@@ -12,8 +12,6 @@ header -->
 
 <!-- post-header -->
 
-<div class="post-cover"><img src="images/portfolio/socketGameCover.png"></div>
-
 Multiplayer isometric plataform, with tilesets.<br>
 Monsters movements are operated by server.<br>
 I make an map editor for this plataform, you can <a href="http://webcaetano.github.io/posts/map-editor">see it here.</a><br>
