@@ -81,6 +81,7 @@ module.exports = function(options) {
 		'clean:siteTmp',
 		gulp.parallel(
 			'posts',
+			'postsGrid',
 			'inject'
 		)
 	));
