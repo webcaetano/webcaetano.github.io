@@ -1,5 +1,5 @@
 .menu {
-	color:#FFF;
+	color:#C6C6C6;
 	text-transform: uppercase;
 	font-size:1.6em;
 
@@ -10,8 +10,17 @@
 	}
 
 	a:link, a:visited, a:hover {
-		color: #fff;
+		color: #D9D9D9;
 		text-decoration: none;
+		&:hover {
+			color:#FFF;
+		}
+	}
+
+	&.active {
+		a:link, a:visited, a:hover {
+			color:#FFF;
+		}
 	}
 
 	margin-bottom: 20px;

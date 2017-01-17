@@ -17,7 +17,9 @@
 		print(`
 			<div class="menu-tab">
 			<a href="${val.link}">
-			${val.name}
+				<div class="menu-tab-inside">
+					${val.name}
+				</div>
 			</a>
 
 			</div>

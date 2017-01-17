@@ -1,13 +1,17 @@
-<h1> Posts </h1>
+<h1> Portofolio </h1>
 
 
 <div class="posts-grid">
 	<%
 	_.each(posts,function(post){
-		print(`<div class="post-cell">
-			<div class="thumb"><img src="${post.thumb}"></div>
-			<div class="title">${post.title}</div>
-		</div>
+		print(`<a href="">
+			<div class="post-cell">
+				<div class="post-inside">
+					<div class="thumb"><img src="${post.thumb}"></div>
+					<div class="title">${post.title}</div>
+				</div>
+			</div>
+		</a>
 		`)
 	});
 	%>
