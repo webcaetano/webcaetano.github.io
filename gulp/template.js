@@ -15,7 +15,7 @@ var $ = require('gulp-load-plugins')({
 
 var getFileHeader = function(content){
 	var header = content.match(/<!-- header\n(.|\n)*?\nheader -->/g);
-	if(!header) return null;
+	if(!header) return {};
 
 	return YAML.parse(header[0]
 	.replace(/<!-- header\n/g,'')
@@ -23,13 +23,6 @@ var getFileHeader = function(content){
 	.replace(/\t/g,'  ')
 	)
 }
-
-// var mdEscapeTemplate = function(content){
-// 	// [[ ]] -> <%= %>
-// 	_.each(content.match(/\[\[(.*?)\]\]/g),function(){
-
-// 	})
-// }
 
 module.exports = function(options) {
 	function templating(files,folder,templateDir,init='',data={},main=false){
@@ -49,27 +42,27 @@ module.exports = function(options) {
 
 			return gulp.src(files)
 			.pipe(through.obj(function (file, enc, callback) {
-				// var pathData = path.parse(file.path);
-				// var folders = pathData.dir.split('/');
-				// var lastFolder = _.last(folders);
-
-
-
-				// var content = _.template(String(file.contents)
-				// .replace(/<!-- protosTpl -->/g,"<%=protosTpl%>"))({
-				// 	protosTpl:protosTpl
-				// });
-
+				var postHeader = ''
 				var content = String(file.contents);
 
 				var data = getFileHeader(content);
 
+				content =
+				(data.title ? `<h1>${data.title}</h1>` : '')+`
+				`+(data.header ? '<%= postHeader %>' : '')+`
+				`+content;
+
+				if(data.header){
+					postHeader = _.template(String(fs.readFileSync('src/partials/post-header.tpl')))({
+						data,
+					});
+				}
+
 				content = _.template(content)({
-					// data,
+					data,
+					postHeader,
 				})
 				.replace(/<!-- header\n(.|\n)*?\nheader -->/g,'')
-
-				if(data && data.title) content = '<h1>'+data.title+'</h1>\n'+content;
 
 				var newContent = _.template(template)({
 					content,
@@ -84,10 +77,10 @@ module.exports = function(options) {
 				callback(null,file);
 			}))
 			.pipe($.if(main, $.replace('<base href="../../../">', '')))
-			// .pipe($.rename(function (path) {
-			// 	path.extname = ".html"
-			// 	if(main) path.basename = "index"
-			// }))
+			.pipe($.rename(function (path) {
+				path.extname = ".html"
+				if(main) path.basename = "index"
+			}))
 			.pipe(gulp.dest(folder));
 		}
 	}
@@ -128,7 +121,6 @@ module.exports = function(options) {
 	],function(val,i){
 		gulp.task('template:portfolio'+val.name,gulp.series(templating(
 			options.tmp + '/site/portfolio-posts/**/*.html',
-			// options.src + '/portfolio-posts/**/*.md',
 			val.dest+'/portfolio-posts/',
 			val.template,
 			{
@@ -139,7 +131,6 @@ module.exports = function(options) {
 
 		gulp.task('template:posts'+val.name,gulp.series(templating(
 			options.tmp + '/site/posts/**/*.html',
-			// options.src + '/posts/**/*.md',
 			val.dest+'/posts/',
 			val.template,
 			{
@@ -150,7 +141,6 @@ module.exports = function(options) {
 
 		gulp.task('template:mainPage'+val.name,gulp.series(templating(
 			options.tmp + '/site/partials/main.html',
-			// options.src + '/partials/main.md',
 			val.dest+'/',
 			val.template,
 			val.init,

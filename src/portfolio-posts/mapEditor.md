@@ -1,7 +1,8 @@
 <!-- header
 title: Map Editor
+header: true
 date: 12/08/2015
-autor: webcaetano
+author: webcaetano
 cover: images/posts/mapEdit.png
 thumb: images/thumb/mapEdit.png
 tags:
@@ -9,8 +10,6 @@ tags:
 	- Socket.io
 	- Isometric
 header -->
-
-<!-- post-header -->
 
 MapEditor of tileset assets<br>
 With layers, brush, bucket and eraser, tool.<br>

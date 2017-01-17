@@ -1,7 +1,8 @@
 <!-- header
 title: Demo Socket Game
+header: true
 date: 12/08/2015
-autor: webcaetano
+author: webcaetano
 cover: images/posts/socketGame.png
 thumb: images/thumb/socketGame.png
 tags:
@@ -9,8 +10,6 @@ tags:
 	- Socket.io
 	- Isometric
 header -->
-
-<!-- post-header -->
 
 Multiplayer isometric plataform, with tilesets.<br>
 Monsters movements are operated by server.<br>
