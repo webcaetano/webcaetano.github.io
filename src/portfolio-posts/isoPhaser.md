@@ -3,8 +3,8 @@ title: HTML5 Isometric 3D
 header: true
 date: 01/05/2016
 author: webcaetano
-cover: images/posts/isoPhaser.png
-thumb: images/thumb/isoPhaser.png
+cover: images/posts/cover/isoPhaser.png
+thumb: images/posts/thumb/isoPhaser.png
 tags:
 	- HTML5
 	- Isometric

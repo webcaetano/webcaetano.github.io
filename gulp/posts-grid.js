@@ -13,11 +13,6 @@ var $ = require('gulp-load-plugins')({
 	pattern: ['gulp-*', 'del']
 });
 
-// - Todo
-//   - [x] Get Posts
-//   - [x] Templating
-
-
 var getPosts = function(folder){
 	return _.map(glob.sync(folder),function(file){
 		var content = String(fs.readFileSync(file));

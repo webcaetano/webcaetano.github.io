@@ -1,4 +1,6 @@
 <div class="header">
-header
-
+	<dir class="main-header">
+		header
+	</dir>
+	<%= menu %>
 </div>

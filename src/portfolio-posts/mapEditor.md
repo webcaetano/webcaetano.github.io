@@ -3,8 +3,8 @@ title: Map Editor
 header: true
 date: 12/08/2015
 author: webcaetano
-cover: images/posts/mapEdit.png
-thumb: images/thumb/mapEdit.png
+cover: images/posts/cover/mapEdit.png
+thumb: images/posts/thumb/mapEdit.png
 tags:
 	- Flash
 	- Socket.io

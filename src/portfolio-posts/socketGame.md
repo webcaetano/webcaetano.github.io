@@ -3,8 +3,8 @@ title: Demo Socket Game
 header: true
 date: 12/08/2015
 author: webcaetano
-cover: images/posts/socketGame.png
-thumb: images/thumb/socketGame.png
+cover: images/posts/cover/socketGame.png
+thumb: images/posts/thumb/socketGame.png
 tags:
 	- Flash
 	- Socket.io

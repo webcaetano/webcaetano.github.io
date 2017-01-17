@@ -22,8 +22,14 @@ module.exports = function(options) {
 			version:pkg.version,
 		});
 
+		var menu = _.template(String(fs.readFileSync('src/partials/menu.tpl')))({
+			version:pkg.version,
+			home:val.main,
+		});
+
 		var header = _.template(String(fs.readFileSync('src/partials/header.tpl')))({
 			version:pkg.version,
+			menu,
 			home:val.main,
 		});
 
