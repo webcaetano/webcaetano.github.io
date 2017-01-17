@@ -68,38 +68,11 @@ module.exports = function(options) {
 			name:'',
 		},
 	],function(val,i){
-		// gulp.task('template:portfolio'+val.name,templating({
-		// 	files:options.tmp + '/site/portfolio-posts/**/*.html',
-		// 	folder:val.dest+'/portfolio-posts/',
-		// }));
-
-		// gulp.task('template:posts'+val.name,templating({
-		// 	files:options.tmp + '/site/posts/**/*.html',
-		// 	folder:val.dest+'/posts/',
-		// }));
-
-		// gulp.task('template:mainPage'+val.name,templating({
-		// 	files:options.tmp + '/site/partials/main.html',
-		// 	folder:val.dest+'/',
-		// 	main:true
-		// }));
-
-		// gulp.task('template'+val.name,gulp.series(
-		// 	'clean:siteTmp',
-		// 	'posts',
-		// 	'inject',
-		// 	gulp.parallel(
-		// 		'template:portfolio'+val.name,
-		// 		'template:posts'+val.name,
-		// 		'template:mainPage'+val.name
-		// 	)
-		// ));
-
 		gulp.task('template'+val.name,gulp.series(
 			'clean:siteTmp',
 			'posts',
 			'inject',
-			gulp.parallel.bind(null,_.map([
+			gulp.parallel(_.map([
 				{
 					files:options.tmp + '/site/partials/main.html',
 					folder:val.dest+'/',
@@ -113,7 +86,9 @@ module.exports = function(options) {
 					files:options.tmp + '/site/portfolio-posts/**/*.html',
 					folder:val.dest+'/portfolio-posts/',
 				}
-			],_.bind(templating)))
+			],function(val){
+				return _.bind(templating,null,val)
+			}))
 		));
 	})
 };
