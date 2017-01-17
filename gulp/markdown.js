@@ -10,7 +10,7 @@ var $ = require('gulp-load-plugins')({
 });
 
 module.exports = function(options) {
-	function markdown(files,dest,folder,env){
+	function markdown(files,dest,folder,main=false){
 		return function markdown(){
 			var stream = gulp.src(files)
 			.pipe($.markdown({
@@ -20,32 +20,21 @@ module.exports = function(options) {
 				header: true
 			}));
 
-			_.each([
-				'String',
-				'Number',
-				'Boolean',
-				'Object',
-				'Array',
-				'Phaser.Group',
-			],function(val,i){
-				stream.pipe($.replace(new RegExp("<"+val+">",'g'), "<span class='paramter-type'>&lt;"+val+"&gt;</span>"))
-			})
+			if(!main){
+				stream.pipe($.cheerio(function ($$, file) {
+					// var firstTitle = $$('h1').eq(0).text();
+					// if(!firstTitle) firstTitle=path.basename(file.path,path.extname(file.path));
+					var firstTitle=path.basename(file.path,path.extname(file.path));
 
-			stream.pipe($.cheerio(function ($$, file) {
-				// var firstTitle = $$('h1').eq(0).text();
-				// if(!firstTitle) firstTitle=path.basename(file.path,path.extname(file.path));
-				var firstTitle=path.basename(file.path,path.extname(file.path));
+					file.path = path.join(path.dirname(file.path),
+						folder,
+						firstTitle.replace(/[\$|\.]/g,''),
+						'/index'+path.extname(file.path)
+					);
+				}));
+			}
 
-				file.path = path.join(path.dirname(file.path),
-					folder,
-					firstTitle.replace(/[\$|\.]/g,''),
-					'/index'+path.extname(file.path)
-				);
-			}))
-			// .pipe($.if(function(){
-			// 	return env=='dist'
-			// }, $.replace('src="images/', 'src="../src/images/')))
-			.pipe(gulp.dest(dest));
+			stream.pipe(gulp.dest(dest));
 
 			return stream;
 		}
@@ -77,24 +66,14 @@ module.exports = function(options) {
 	gulp.task('markdown:mainPage', gulp.series(markdown([
 			'src/partials/main.md',
 		],
-		options.tmp+'/site',
-		"/partials/"
+		options.tmp+'/site/partials',
+		"/partials/",
+		true
 	)));
-
-	// gulp.task('markdown:mainPage', function(){
-	// 	return gulp.src(['src/partials/main.md'])
-	// 	.pipe($.markdown({
-	// 		highlight: function(code) {
-	// 			return require('highlight.js').highlightAuto(code).value;
-	// 		},
-	// 		header: true
-	// 	}))
-	// 	.pipe(gulp.dest(options.tmp+'/site/partials'));
-	// });
 
 	gulp.task('markdown', gulp.series(
 		'clean:docs',
-		gulp.parallel(
+		gulp.series(
 			'markdown:portfolio',
 			'markdown:mainPage',
 			'markdown:posts'
