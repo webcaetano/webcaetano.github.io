@@ -16,39 +16,38 @@ var $ = require('gulp-load-plugins')({
 
 module.exports = function(options) {
 	var templating = function(val){
-		return function templating(){
-			var template = String(fs.readFileSync(options.tmp + '/site/injected.tpl'));
+		var template = String(fs.readFileSync(options.tmp + '/site/injected.tpl'));
 
-			var footer = _.template(String(fs.readFileSync('src/partials/footer.tpl')))({
+		var footer = _.template(String(fs.readFileSync('src/partials/footer.tpl')))({
+			version:pkg.version,
+		});
+
+		var header = _.template(String(fs.readFileSync('src/partials/header.tpl')))({
+			version:pkg.version,
+			home:val.main,
+		});
+
+		return gulp.src(val.files)
+		.pipe(through.obj(function (file, enc, callback) {
+			var content = String(file.contents);
+
+			var newContent = _.template(template)({
+				content,
+				header,
+				footer,
 				version:pkg.version,
 			});
+			file.contents = new Buffer(newContent);
 
-			var header = _.template(String(fs.readFileSync('src/partials/header.tpl')))({
-				version:pkg.version,
-				home:val.main,
-			});
+			callback(null,file);
+		}))
+		.pipe($.if(val.main, $.replace('<base href="../../../">', '')))
+		.pipe($.rename(function (path) {
+			path.extname = ".html"
+			if(val.main) path.basename = "index"
+		}))
+		.pipe(gulp.dest(val.folder));
 
-			return gulp.src(val.files)
-			.pipe(through.obj(function (file, enc, callback) {
-				var content = String(file.contents);
-
-				var newContent = _.template(template)({
-					content,
-					header,
-					footer,
-					version:pkg.version,
-				});
-				file.contents = new Buffer(newContent);
-
-				callback(null,file);
-			}))
-			.pipe($.if(val.main, $.replace('<base href="../../../">', '')))
-			.pipe($.rename(function (path) {
-				path.extname = ".html"
-				if(val.main) path.basename = "index"
-			}))
-			.pipe(gulp.dest(val.folder));
-		}
 	}
 
 	gulp.task('clean:siteTmp', function (done) {
@@ -69,31 +68,52 @@ module.exports = function(options) {
 			name:'',
 		},
 	],function(val,i){
-		gulp.task('template:portfolio'+val.name,templating({
-			files:options.tmp + '/site/portfolio-posts/**/*.html',
-			folder:val.dest+'/portfolio-posts/',
-		}));
+		// gulp.task('template:portfolio'+val.name,templating({
+		// 	files:options.tmp + '/site/portfolio-posts/**/*.html',
+		// 	folder:val.dest+'/portfolio-posts/',
+		// }));
 
-		gulp.task('template:posts'+val.name,templating({
-			files:options.tmp + '/site/posts/**/*.html',
-			folder:val.dest+'/posts/',
-		}));
+		// gulp.task('template:posts'+val.name,templating({
+		// 	files:options.tmp + '/site/posts/**/*.html',
+		// 	folder:val.dest+'/posts/',
+		// }));
 
-		gulp.task('template:mainPage'+val.name,templating({
-			files:options.tmp + '/site/partials/main.html',
-			folder:val.dest+'/',
-			main:true
-		}));
+		// gulp.task('template:mainPage'+val.name,templating({
+		// 	files:options.tmp + '/site/partials/main.html',
+		// 	folder:val.dest+'/',
+		// 	main:true
+		// }));
+
+		// gulp.task('template'+val.name,gulp.series(
+		// 	'clean:siteTmp',
+		// 	'posts',
+		// 	'inject',
+		// 	gulp.parallel(
+		// 		'template:portfolio'+val.name,
+		// 		'template:posts'+val.name,
+		// 		'template:mainPage'+val.name
+		// 	)
+		// ));
 
 		gulp.task('template'+val.name,gulp.series(
 			'clean:siteTmp',
 			'posts',
 			'inject',
-			gulp.parallel(
-				'template:portfolio'+val.name,
-				'template:posts'+val.name,
-				'template:mainPage'+val.name
-			)
+			gulp.parallel.bind(null,_.map([
+				{
+					files:options.tmp + '/site/partials/main.html',
+					folder:val.dest+'/',
+					main:true
+				},
+				{
+					files:options.tmp + '/site/posts/**/*.html',
+					folder:val.dest+'/posts/',
+				},
+				{
+					files:options.tmp + '/site/portfolio-posts/**/*.html',
+					folder:val.dest+'/portfolio-posts/',
+				}
+			],_.bind(templating)))
 		));
 	})
 };
