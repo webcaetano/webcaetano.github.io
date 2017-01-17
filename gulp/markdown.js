@@ -74,23 +74,23 @@ module.exports = function(options) {
 		"/posts/"
 	)));
 
-	// gulp.task('markdown:mainPage', gulp.series(markdown([
-	// 		'src/partials/main.md',
-	// 	],
-	// 	options.tmp+'/site',
-	// 	"/partials/"
-	// )));
+	gulp.task('markdown:mainPage', gulp.series(markdown([
+			'src/partials/main.md',
+		],
+		options.tmp+'/site',
+		"/partials/"
+	)));
 
-	gulp.task('markdown:mainPage', function(){
-		return gulp.src(['src/partials/main.md'])
-		.pipe($.markdown({
-			highlight: function(code) {
-				return require('highlight.js').highlightAuto(code).value;
-			},
-			header: true
-		}))
-		.pipe(gulp.dest(options.tmp+'/site/partials'));
-	});
+	// gulp.task('markdown:mainPage', function(){
+	// 	return gulp.src(['src/partials/main.md'])
+	// 	.pipe($.markdown({
+	// 		highlight: function(code) {
+	// 			return require('highlight.js').highlightAuto(code).value;
+	// 		},
+	// 		header: true
+	// 	}))
+	// 	.pipe(gulp.dest(options.tmp+'/site/partials'));
+	// });
 
 	gulp.task('markdown', gulp.series(
 		'clean:docs',
