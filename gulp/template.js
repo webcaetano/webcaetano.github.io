@@ -15,7 +15,7 @@ var $ = require('gulp-load-plugins')({
 
 
 module.exports = function(options) {
-	var templating = function(val){
+	function templating(val){
 		var template = String(fs.readFileSync(options.tmp + '/site/injected.tpl'));
 
 		var footer = _.template(String(fs.readFileSync('src/partials/footer.tpl')))({
