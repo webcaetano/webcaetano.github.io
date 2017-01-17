@@ -5,24 +5,14 @@ var through = require('through2');
 var path = require('path');
 var _ = require('lodash');
 var glob = require('glob');
-var YAML = require('yamljs');
 var fs = require('fs');
 var pkg = JSON.parse(fs.readFileSync(path.join(__dirname,'../package.json')));
+var getFileHeader = require('./getFileHeader');
 
 var $ = require('gulp-load-plugins')({
 	pattern: ['gulp-*', 'del']
 });
 
-var getFileHeader = function(content){
-	var header = content.match(/<!-- header\n(.|\n)*?\nheader -->/g);
-	if(!header) return {};
-
-	return YAML.parse(header[0]
-	.replace(/<!-- header\n/g,'')
-	.replace(/\nheader -->/g,'')
-	.replace(/\t/g,'  ')
-	)
-}
 
 module.exports = function(options) {
 	function templating(files,folder,templateDir,init='',data={},main=false){
