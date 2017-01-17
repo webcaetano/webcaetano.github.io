@@ -15,17 +15,15 @@ var $ = require('gulp-load-plugins')({
 
 
 module.exports = function(options) {
-	function templating(files,folder,templateDir,init='',data={},main=false){
+	function templating(files,folder,data={},main=false){
 		return function tpl(){
-			var template = String(fs.readFileSync(templateDir));
+			var template = String(fs.readFileSync(options.tmp + '/site/injected.tpl'));
 
 			var footer = _.template(String(fs.readFileSync('src/partials/footer.tpl')))({
 				version:pkg.version,
-				init,
 			});
 
 			var header = _.template(String(fs.readFileSync('src/partials/header.tpl')))({
-				init,
 				version:pkg.version,
 				home:main,
 			});
@@ -57,7 +55,6 @@ module.exports = function(options) {
 				var newContent = _.template(template)({
 					content,
 					header,
-					init,
 					data,
 					footer,
 					version:pkg.version,
@@ -99,41 +96,31 @@ module.exports = function(options) {
 		{
 			dest:'.',
 			name:':dist',
-			init:'',
-			template:options.tmp + '/site/injected.tpl'
 		},
 		{
 			dest:options.tmp + '/site',
-			init:'',
 			name:'',
-			template:options.tmp + '/site/injected.tpl'
 		},
 	],function(val,i){
 		gulp.task('template:portfolio'+val.name,gulp.series(templating(
 			options.tmp + '/site/portfolio-posts/**/*.html',
 			val.dest+'/portfolio-posts/',
-			val.template,
 			{
 
-			},
-			val.init
+			}
 		)));
 
 		gulp.task('template:posts'+val.name,gulp.series(templating(
 			options.tmp + '/site/posts/**/*.html',
 			val.dest+'/posts/',
-			val.template,
 			{
 				// posts:
-			},
-			val.init
+			}
 		)));
 
 		gulp.task('template:mainPage'+val.name,gulp.series(templating(
 			options.tmp + '/site/partials/main.html',
 			val.dest+'/',
-			val.template,
-			val.init,
 			true
 		)));
 
