@@ -15,7 +15,7 @@ var $ = require('gulp-load-plugins')({
 
 
 module.exports = function(options) {
-	function templating(val){
+	function wrapper(val){
 		var template = String(fs.readFileSync(options.tmp + '/site/injected.tpl'));
 
 		var footer = _.template(String(fs.readFileSync('src/partials/footer.tpl')))({
@@ -47,7 +47,6 @@ module.exports = function(options) {
 			if(val.main) path.basename = "index"
 		}))
 		.pipe(gulp.dest(val.folder));
-
 	}
 
 	gulp.task('clean:siteTmp', function (done) {
@@ -58,37 +57,41 @@ module.exports = function(options) {
 		],{force:true});
 	});
 
-	_.each([
-		{
-			dest:'.',
-			name:':dist',
+	function templating(dest){
+		var data = [{
+			files:options.tmp + '/site/partials/main.html',
+			folder:dest+'/',
+			main:true
 		},
 		{
-			dest:options.tmp + '/site',
-			name:'',
+			files:options.tmp + '/site/posts/**/*.html',
+			folder:dest+'/posts/',
 		},
-	],function(val,i){
-		gulp.task('template'+val.name,gulp.series(
-			'clean:siteTmp',
+		{
+			files:options.tmp + '/site/portfolio-posts/**/*.html',
+			folder:dest+'/portfolio-posts/',
+		}];
+
+		return gulp.parallel(_.map(data,function(val){
+			return _.bind(wrapper,null,val)
+		}));
+	}
+
+	gulp.task('pre-template',gulp.series(
+		'clean:siteTmp',
+		gulp.parallel(
 			'posts',
-			'inject',
-			gulp.parallel(_.map([
-				{
-					files:options.tmp + '/site/partials/main.html',
-					folder:val.dest+'/',
-					main:true
-				},
-				{
-					files:options.tmp + '/site/posts/**/*.html',
-					folder:val.dest+'/posts/',
-				},
-				{
-					files:options.tmp + '/site/portfolio-posts/**/*.html',
-					folder:val.dest+'/portfolio-posts/',
-				}
-			],function(val){
-				return _.bind(templating,null,val)
-			}))
-		));
-	})
+			'inject'
+		)
+	));
+
+	gulp.task('template:dist',gulp.series(
+		'pre-template',
+		templating('.')
+	));
+
+	gulp.task('template',gulp.series(
+		'pre-template',
+		templating(options.tmp + '/site')
+	));
 };
