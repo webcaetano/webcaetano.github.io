@@ -15,8 +15,8 @@ var $ = require('gulp-load-plugins')({
 
 
 module.exports = function(options) {
-	function templating(files,folder,data={},main=false){
-		return function tpl(){
+	var templating = function(val){
+		return function templating(){
 			var template = String(fs.readFileSync(options.tmp + '/site/injected.tpl'));
 
 			var footer = _.template(String(fs.readFileSync('src/partials/footer.tpl')))({
@@ -25,37 +25,16 @@ module.exports = function(options) {
 
 			var header = _.template(String(fs.readFileSync('src/partials/header.tpl')))({
 				version:pkg.version,
-				home:main,
+				home:val.main,
 			});
 
-			return gulp.src(files)
+			return gulp.src(val.files)
 			.pipe(through.obj(function (file, enc, callback) {
-				var postHeader = ''
 				var content = String(file.contents);
-
-				var data = getFileHeader(content);
-
-				content =
-				(data.title ? `<h1>${data.title}</h1>` : '')+`
-				`+(data.header ? '<%= postHeader %>' : '')+`
-				`+content;
-
-				if(data.header){
-					postHeader = _.template(String(fs.readFileSync('src/partials/post-header.tpl')))({
-						data,
-					});
-				}
-
-				content = _.template(content)({
-					data,
-					postHeader,
-				})
-				.replace(/<!-- header\n(.|\n)*?\nheader -->/g,'')
 
 				var newContent = _.template(template)({
 					content,
 					header,
-					data,
 					footer,
 					version:pkg.version,
 				});
@@ -63,26 +42,14 @@ module.exports = function(options) {
 
 				callback(null,file);
 			}))
-			.pipe($.if(main, $.replace('<base href="../../../">', '')))
+			.pipe($.if(val.main, $.replace('<base href="../../../">', '')))
 			.pipe($.rename(function (path) {
 				path.extname = ".html"
-				if(main) path.basename = "index"
+				if(val.main) path.basename = "index"
 			}))
-			.pipe(gulp.dest(folder));
+			.pipe(gulp.dest(val.folder));
 		}
 	}
-
-	var getPosts = function(dir=''){
-		return _.map(glob.sync(dir),function(file){
-			// var p = path.parse(file)
-			// String(fs.readFileSync())
-
-
-			// return p.name;
-		});
-	}
-
-	// console.log(getPosts('src/portfolio-posts/*.md'))
 
 	gulp.task('clean:siteTmp', function (done) {
 		return $.del([
@@ -102,35 +69,31 @@ module.exports = function(options) {
 			name:'',
 		},
 	],function(val,i){
-		gulp.task('template:portfolio'+val.name,gulp.series(templating(
-			options.tmp + '/site/portfolio-posts/**/*.html',
-			val.dest+'/portfolio-posts/',
-			{
+		gulp.task('template:portfolio'+val.name,templating({
+			files:options.tmp + '/site/portfolio-posts/**/*.html',
+			folder:val.dest+'/portfolio-posts/',
+		}));
 
-			}
-		)));
+		gulp.task('template:posts'+val.name,templating({
+			files:options.tmp + '/site/posts/**/*.html',
+			folder:val.dest+'/posts/',
+		}));
 
-		gulp.task('template:posts'+val.name,gulp.series(templating(
-			options.tmp + '/site/posts/**/*.html',
-			val.dest+'/posts/',
-			{
-				// posts:
-			}
-		)));
-
-		gulp.task('template:mainPage'+val.name,gulp.series(templating(
-			options.tmp + '/site/partials/main.html',
-			val.dest+'/',
-			true
-		)));
+		gulp.task('template:mainPage'+val.name,templating({
+			files:options.tmp + '/site/partials/main.html',
+			folder:val.dest+'/',
+			main:true
+		}));
 
 		gulp.task('template'+val.name,gulp.series(
 			'clean:siteTmp',
-			'markdown',
-			'template:mainPage'+val.name,
-			'template:portfolio'+val.name,
-			'template:posts'+val.name
+			'posts',
+			'inject',
+			gulp.parallel(
+				'template:portfolio'+val.name,
+				'template:posts'+val.name,
+				'template:mainPage'+val.name
+			)
 		));
 	})
-
 };
