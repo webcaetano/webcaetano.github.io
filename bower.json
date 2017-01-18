@@ -3,7 +3,9 @@
   "version": "0.0.0",
   "dependencies": {
     "highlight": "~9.0.0",
-    "smoothscroll": "smoothscroll-for-websites#~1.4.1"
+    "smoothscroll": "smoothscroll-for-websites#~1.4.1",
+    "bootstrap": "3.3.7",
+    "font-awesome": "^4.7.0"
   },
   "overrides": {
     "highlight": {

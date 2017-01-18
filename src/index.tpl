@@ -8,11 +8,10 @@
 	<meta name="viewport" content="width=device-width">
 	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
 	<!-- build:css(./) styles/vendor.css -->
 	<link rel="stylesheet" type="text/css" href="/bower_components/highlight/src/styles/monokai.css">
+	<link rel="stylesheet" type="text/css" href="/bower_components/bootstrap/dist/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="/bower_components/font-awesome/css/font-awesome.css">
 	<!-- endbuild -->
 
 	<!-- build:css({.tmp/site,site}) styles/styles.css -->
