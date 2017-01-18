@@ -29,7 +29,7 @@ module.exports = function(options) {
 
 		var header = _.template(String(fs.readFileSync('src/partials/header.tpl')))({
 			version:pkg.version,
-			menu,
+			// menu,
 			home:val.main,
 		});
 
@@ -40,6 +40,7 @@ module.exports = function(options) {
 			var newContent = _.template(template)({
 				content,
 				header,
+				menu,
 				footer,
 				version:pkg.version,
 			});

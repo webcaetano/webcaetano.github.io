@@ -24,6 +24,7 @@
 <body>
 	<div class="all" align="center">
 		<%= header %>
+		<%= menu %>
 		<div class="mid">
 			<div class="posts">
 				<%= content %>

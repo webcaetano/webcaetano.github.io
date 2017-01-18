@@ -34,12 +34,10 @@ module.exports = function(options) {
 		// 	done();
 		// })
 		)
-		.on('change',function(){
-			return gulp.series('styles',function(done){
-				browserSync.reload();
-				done();
-			})();
-		})
+		.on('change', gulp.series('styles',function(done){
+			browserSync.reload();
+			done();
+		}))
 		.on('add',gulp.series('fullReload'))
 		.on('addDir',gulp.series('fullReload'))
 		.on('unlink',gulp.series('fullReload'))

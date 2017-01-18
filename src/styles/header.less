@@ -4,7 +4,9 @@
 	width: 100%;
 	position: relative;
 	// height:300px;
-	min-height:170px;
+	vertical-align: top;
+	min-height:200px;
+	margin: 0;
 
 	background-image: url('../images/stars.jpg');
 	-webkit-animation: slide 12s linear infinite;
@@ -14,10 +16,10 @@
 		margin: 0;
 		position: relative;
 
-		@start:55px;
+		@start:75px;
 
 		.avatar {
-			top:25px;
+			top:@start - 30px;
 			position: absolute;
 			left:50%;
 			margin-left: -20%;
@@ -63,6 +65,7 @@
 	.top{
 		display: inline-block;
 		position: absolute;
+		margin: 0;
 		left: 0;
 		width: 100%;
 		height: 100%;

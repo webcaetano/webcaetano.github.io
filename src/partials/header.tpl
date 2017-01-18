@@ -6,5 +6,4 @@
 		<div class="sub-title">Game <span>Developer</span></div>
 		<div class="mini-flag"><i class="flag flag-br"></i></div>
 	</dir>
-	<%= menu %>
 </div>
