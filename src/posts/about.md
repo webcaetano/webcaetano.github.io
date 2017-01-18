@@ -2,7 +2,9 @@
 title: About
 header -->
 
-Hi! I'm 26 years old and i'm an Indie Game Developer :space_invader: <br>
+Hi! I'm <!--esc 
+	print(Math.floor( ((new Date()).getTime() - (new Date(1989, 8, 14)).getTime()) / (1000 * 60 * 60 * 24 * 365.25))) 
+--> years old and i'm an Indie Game Developer :space_invader: <br>
 Glad to have you spend a short time with me.
 
 I'm an enthusiastic about gaming developing, really enjoy and have fun in doing it.<br>

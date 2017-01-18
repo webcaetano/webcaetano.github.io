@@ -12,6 +12,14 @@ var $ = require('gulp-load-plugins')({
 	pattern: ['gulp-*', 'del']
 });
 
+var escapeMarkdown = function(content){
+	return content.replace(/<!--esc(.|\n)*?-->/g,function(val){
+		return val
+		.replace(/<!--esc/,'<%')
+		.replace(/-->/,'%>')
+	})
+}
+
 module.exports = function(options) {
 	function posts(files){
 		return function posts(){
@@ -33,6 +41,8 @@ module.exports = function(options) {
 						data,
 					});
 				}
+
+				content = escapeMarkdown(content);
 
 				content = _.template(content)({
 					data,

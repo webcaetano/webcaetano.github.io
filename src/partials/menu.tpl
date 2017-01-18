@@ -1,4 +1,4 @@
-<div class="menu cl-effect-3">
+<div class="menu">
 	<%
 	_.each([
 		{
@@ -16,12 +16,11 @@
 	],function(val){
 		print(`
 			<div class="menu-tab">
-			<a href="${val.link}">
-				<div class="menu-tab-inside">
-					${val.name}
-				</div>
-			</a>
-
+				<a href="${val.link}">
+					<div class="menu-tab-inside">
+						${val.name}
+					</div>
+				</a>
 			</div>
 		`);
 	});
