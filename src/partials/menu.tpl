@@ -10,7 +10,7 @@
 			name:'Portfolio'
 		},
 		{
-			link:'/contact',
+			link:'/posts/contact',
 			name:'Contact'
 		},
 	],function(val){
