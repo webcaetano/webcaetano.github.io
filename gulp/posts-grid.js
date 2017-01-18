@@ -31,6 +31,10 @@ module.exports = function(options) {
 		.pipe(through.obj(function (file, enc, callback) {
 			var content = String(file.contents);
 
+			content =
+			(data.title ? `<h1>${data.title}</h1>` : '')+`
+			`+content;
+
 			content = _.template(content)({
 				posts,
 				urlEncode
@@ -51,10 +55,12 @@ module.exports = function(options) {
 
 	function postsGrid(dest){
 		var data = [{
+			title:'Portofolio',
 			files:'src/portfolio-posts/**/*.md',
 			dest:dest+'/portfolio-posts/'
 		},
 		{
+			title:'Posts',
 			files:'src/posts/**/*.md',
 			dest:dest+'/posts/'
 		}];

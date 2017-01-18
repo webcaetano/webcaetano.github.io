@@ -1,7 +1,8 @@
 .posts{
 	.max-display;
 
-	.font-open;
+	// .font-open;
+
 	font-size: 1.1em;
 	padding-left: 20px;
 	padding-right: 20px;
@@ -9,10 +10,17 @@
 	padding-bottom: 10px;
 	text-align: left;
 	line-height:28px;
-	// margin-bottom: 120px;
+
+	.post-line {
+		display: inline-block;
+		height: 3px;
+		width: 100%;
+		vertical-align: top;
+		.color-line;
+	}
 
 	h1, h2, h3 {
-		.font-mont;
+		.font-rale;
 
 		position: relative;
 		font-size: 2em;
@@ -36,16 +44,29 @@
 		display: inline-block;
 		margin: 15px;
 
+		.mini-line {
+			// background-color: @color3;
+			.color-line;
+			height:3px;
+			display: inline-block;
+			vertical-align: top;
+			width: 100%;
+		}
+
 		.post-inside {
 			min-height: 270px;
+			min-width: 250px;
 			background-color: #fff;
-			padding: 9px;
+			// padding: 9px;
+			padding-bottom: 14px;
 			top: 0px;
 			cursor: pointer;
 
 			position: relative;
-			border: 1px solid #ddd;
-			.round(6px);
+			border-left: 1px solid #ddd;
+			border-right: 1px solid #ddd;
+			border-bottom: 1px solid #ddd;
+			// .round(6px);
 			.shadow(.075,0px,2px,2px);
 			.transation(600ms);
 		}
@@ -57,17 +78,20 @@
 		}
 
 		.title {
-			padding-top: 22px;
+			padding-top: 15px;
 			font-weight: bold;
 			font-size: 1.1em;
 			color: @color2;
-			.font-mont;
+			// .font-mont;
+			.font-rale;
 		}
 
 		&:hover {
 			.post-inside {
 				top: -5px;
-				border: 1px solid #808080;
+				border-left: 1px solid #808080;
+				border-right: 1px solid #808080;
+				border-bottom: 1px solid #808080;
 				.shadow(.125,0px,2px,2px);
 				.title{
 					color: @color3;
@@ -125,6 +149,8 @@
 	.post-header {
 		color: #777777;
 		font-size: 0.9em;
+		margin-bottom: 20px;
+
 		.date, .author, .tags {
 			display: inline-block;
 		}
@@ -157,4 +183,8 @@
 			}
 		}
 	}
+
+
+
+
 }

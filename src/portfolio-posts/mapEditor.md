@@ -21,4 +21,7 @@ Hotkeys: <br>
 - **G** Show/Hide Grid.<br>
 - **SPACE** Drag and Drop Map<br>
 
-<iframe src="http://45.55.171.155:3000/mapEdit" width="700" height="600" scrolling="no"></iframe>
+
+<div align="center">
+	<iframe src="http://45.55.171.155:3000/mapEdit" width="700" height="600" scrolling="no"></iframe>
+</div>

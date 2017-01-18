@@ -18,5 +18,8 @@ Write on **NodeJS** + **Socket.io** + **Flash**.
 
 All sprites and tileset assets are made in Flash.
 
-<iframe src="http://45.55.171.155:3000" width="550" height="400" scrolling="no"></iframe>
+<div align="center">
+	<iframe src="http://45.55.171.155:3000" width="550" height="400" scrolling="no"></iframe>
+</div>
+
 

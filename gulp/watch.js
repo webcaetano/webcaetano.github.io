@@ -15,7 +15,7 @@ module.exports = function(options) {
 			'src/index.tpl',
 			'src/partials/**/*.{md,tpl}',
 
-			'src/portofolio-posts/**/*.md',
+			'src/portfolio-posts/**/*.md',
 			'src/posts/**/*.md',
 		], gulp.series('fullReload'));
 

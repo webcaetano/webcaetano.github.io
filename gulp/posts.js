@@ -24,7 +24,7 @@ module.exports = function(options) {
 				var data = getFileHeader(content);
 
 				content =
-				(data.title ? `<h1>${data.title}</h1>` : '')+`
+				(data.title ? `<h1>${data.title}</h1><div class="post-line"></div>` : '')+`
 				`+(data.header ? '<%= postHeader %>' : '')+`
 				`+content;
 
