@@ -6,7 +6,10 @@ var through = require('through2');
 var _ = require('lodash');
 var fs = require('fs');
 var emoji = require('node-emoji');
-var emojize = require('emojize').emojize
+var emojize = require('emojize').emojize;
+var getFileHeader = require('./getFileHeader');
+var urlEncode = require('./urlEncode');
+
 
 var $ = require('gulp-load-plugins')({
 	pattern: ['gulp-*', 'del']
@@ -42,13 +45,18 @@ module.exports = function(options) {
 
 			if(!main){
 				stream.pipe($.cheerio(function ($$, file) {
+					var content = String(file.contents);
+					var data = getFileHeader(content);
+
+
 					// var firstTitle = $$('h1').eq(0).text();
 					// if(!firstTitle) firstTitle=path.basename(file.path,path.extname(file.path));
 					var firstTitle=path.basename(file.path,path.extname(file.path));
 
 					file.path = path.join(path.dirname(file.path),
 						folder,
-						firstTitle.replace(/[\$|\.]/g,''),
+						// firstTitle.replace(/[\$|\.]/g,''),
+						urlEncode(data.title),
 						'/index'+path.extname(file.path)
 					);
 				}));

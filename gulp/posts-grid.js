@@ -8,6 +8,7 @@ var glob = require('glob');
 var fs = require('fs');
 var pkg = JSON.parse(fs.readFileSync(path.join(__dirname,'../package.json')));
 var getFileHeader = require('./getFileHeader');
+var urlEncode = require('./urlEncode');
 
 var $ = require('gulp-load-plugins')({
 	pattern: ['gulp-*', 'del']
@@ -31,7 +32,8 @@ module.exports = function(options) {
 			var content = String(file.contents);
 
 			content = _.template(content)({
-				posts
+				posts,
+				urlEncode
 			});
 
 			file.contents = new Buffer(content);
