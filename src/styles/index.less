@@ -55,7 +55,12 @@ body {
 	position: relative;
 }
 
+
 .color-line {
+	@v1:0.43;
+	@v2:0.75;
+	@v3:0.93;
+
 	@c1:#364F6B;
 	@c2:#3FC1C9;
 	@c3:#F5F5F5;
@@ -64,43 +69,44 @@ body {
     /* IE9, iOS 3.2+ */
     background-image: -webkit-gradient(linear, 0% 0%, 100% 0%,
     	color-stop(0, rgba(red(@c1), green(@c1), blue(@c1), 1)),
-    	color-stop(0.25, rgba(red(@c1), green(@c1), blue(@c1), 1)),
-    	color-stop(0.251, rgba(red(@c2), green(@c2), blue(@c2), 1)),
-    	color-stop(0.5, rgba(red(@c2), green(@c2), blue(@c2), 1)),
-    	color-stop(0.501, rgba(red(@c3), green(@c3), blue(@c3), 1)),
-    	color-stop(0.75, rgba(red(@c3), green(@c3), blue(@c3), 1)),
-    	color-stop(0.751, rgba(red(@c4), green(@c4), blue(@c4), 1)),
+    	color-stop(@v1, rgba(red(@c1), green(@c1), blue(@c1), 1)),
+    	color-stop(@v1 + 0.001, rgba(red(@c2), green(@c2), blue(@c2), 1)),
+    	color-stop(@v2, rgba(red(@c2), green(@c2), blue(@c2), 1)),
+    	color-stop(@v2 + 0.001, rgba(red(@c3), green(@c3), blue(@c3), 1)),
+    	color-stop(@v3, rgba(red(@c3), green(@c3), blue(@c3), 1)),
+    	color-stop(@v3 + 0.001, rgba(red(@c4), green(@c4), blue(@c4), 1)),
     	color-stop(1, rgba(red(@c4), green(@c4), blue(@c4), 1))
     );
+
     /* Android 2.3 */
     background-image: -webkit-repeating-linear-gradient(left,
     	rgb(red(@c1), green(@c1), blue(@c1)) 0%,
-    	rgb(red(@c1), green(@c1), blue(@c1)) 25%,
-    	rgb(red(@c2), green(@c2), blue(@c2)) 25.1%,
-    	rgb(red(@c2), green(@c2), blue(@c2)) 50%,
-    	rgb(red(@c3), green(@c3), blue(@c3)) 50.1%,
-    	rgb(red(@c3), green(@c3), blue(@c3)) 75%,
-    	rgb(red(@c4), green(@c4), blue(@c4)) 75.1%,
+    	rgb(red(@c1), green(@c1), blue(@c1)) 43%,
+    	rgb(red(@c2), green(@c2), blue(@c2)) 43.1%,
+    	rgb(red(@c2), green(@c2), blue(@c2)) 75%,
+    	rgb(red(@c3), green(@c3), blue(@c3)) 75.1%,
+    	rgb(red(@c3), green(@c3), blue(@c3)) 93%,
+    	rgb(red(@c4), green(@c4), blue(@c4)) 93.1%,
     	rgb(red(@c4), green(@c4), blue(@c4)) 100%);
     /* IE10+ */
     background-image: repeating-linear-gradient(to right,
     	rgb(red(@c1), green(@c1), blue(@c1)) 0%,
-    	rgb(red(@c1), green(@c1), blue(@c1)) 25%,
-    	rgb(red(@c2), green(@c2), blue(@c2)) 25.1%,
-    	rgb(red(@c2), green(@c2), blue(@c2)) 50%,
-    	rgb(red(@c3), green(@c3), blue(@c3)) 50.1%,
-    	rgb(red(@c3), green(@c3), blue(@c3)) 75%,
-    	rgb(red(@c4), green(@c4), blue(@c4)) 75.1%,
+    	rgb(red(@c1), green(@c1), blue(@c1)) 43%,
+    	rgb(red(@c2), green(@c2), blue(@c2)) 43.1%,
+    	rgb(red(@c2), green(@c2), blue(@c2)) 75%,
+    	rgb(red(@c3), green(@c3), blue(@c3)) 75.1%,
+    	rgb(red(@c3), green(@c3), blue(@c3)) 93%,
+    	rgb(red(@c4), green(@c4), blue(@c4)) 93.1%,
     	rgb(red(@c4), green(@c4), blue(@c4)) 100%);
 
     background-image: -ms-repeating-linear-gradient(left,
     	rgb(red(@c1), green(@c1), blue(@c1)) 0%,
-    	rgb(red(@c1), green(@c1), blue(@c1)) 25%,
-    	rgb(red(@c2), green(@c2), blue(@c2)) 25.1%,
-    	rgb(red(@c2), green(@c2), blue(@c2)) 50%,
-    	rgb(red(@c3), green(@c3), blue(@c3)) 50.1%,
-    	rgb(red(@c3), green(@c3), blue(@c3)) 75%,
-    	rgb(red(@c4), green(@c4), blue(@c4)) 75.1%,
+    	rgb(red(@c1), green(@c1), blue(@c1)) 43%,
+    	rgb(red(@c2), green(@c2), blue(@c2)) 43.1%,
+    	rgb(red(@c2), green(@c2), blue(@c2)) 75%,
+    	rgb(red(@c3), green(@c3), blue(@c3)) 75.1%,
+    	rgb(red(@c3), green(@c3), blue(@c3)) 93%,
+    	rgb(red(@c4), green(@c4), blue(@c4)) 93.1%,
     	rgb(red(@c4), green(@c4), blue(@c4)) 100%);
 }
 
