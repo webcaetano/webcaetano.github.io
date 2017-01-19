@@ -12,11 +12,20 @@ tags:
 header -->
 
 Multiplayer isometric plataform, with tilesets.<br>
-Monsters movements are operated by server.<br>
-I make an map editor for this plataform, you can <a href="http://webcaetano.github.io/posts/map-editor">see it here.</a><br>
-Write on **NodeJS** + **Socket.io** + **Flash**.
+Monsters movements are operated by a `nodejs` server.<br>
+I had to make a map editor for this plataform, you can <a href="http://webcaetano.github.io/posts/map-editor">see it here.</a><br>
 
-All sprites and tileset assets are made in Flash.
+This project was intent to be a MMORPG isometric, based on Ragnarok Online<br>
+I'm still very pasionated about this project.<br>
+But it could take years to launch the beta, if maked all alone<br>
+And i can't support all that by myself 
+
+I have switch this project to `Phaser` but its not live. 
+
+Write on : 
+- `NodeJS`
+- `Socket.io`
+- `Flash`
 
 <div align="center">
 	<iframe src="http://45.55.171.155:3000" width="550" height="400" scrolling="no"></iframe>
