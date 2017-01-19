@@ -25,7 +25,12 @@ var getPosts = function(folder){
 
 module.exports = function(options) {
 	function postsGridTemplating(data){
-		var posts = getPosts(data.files);
+		var posts = _.reverse(_.sortBy(getPosts(data.files),function(val){
+			if(!val.date) return 0;
+
+			var date = val.date.split('/')
+			return ((new Date([date[2],date[0],date[1]].join('.'))).getTime() / 1000)
+		}));
 
 		return gulp.src('src/partials/posts.tpl')
 		.pipe(through.obj(function (file, enc, callback) {

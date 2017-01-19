@@ -1,14 +1,13 @@
 <!-- header
-title: HTML5 Isometric 3D
+title: Wizzard of the Shrine
 header: true
-date: 01/05/2016
+date: 01/18/2017
 author: webcaetano
-cover: images/posts/cover/isoPhaser.png
-thumb: images/posts/thumb/isoPhaser.png
+cover: images/posts/cover/wizz.jpg
+thumb: images/posts/thumb/wizz.jpg
 tags:
-	- HTML5
+	- Indie Game
 	- Phaser
-	- Isometric
 header -->
 
 This is an demonstration of simulating 3d on isometric 2d, mostly knowing as ***2.5d***<br>
@@ -18,5 +17,8 @@ On this demo i use HTML5 `Phaser`
 
 Use the top-right panel to customize the 3d object or the isometric floor.
 
-<iframe src="http://phaseriso.surge.sh" width="750" height="500" scrolling="no"></iframe>
+<div align="center">
+	<iframe src="http://webcaetano.github.io/wizz" width="700" height="500" scrolling="no"></iframe>
+</div>
+
 
