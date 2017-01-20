@@ -66,7 +66,7 @@ module.exports = function(options) {
 
 	function templating(dest){
 		var data = [{
-			files:options.tmp + '/site/partials/main.html',
+			files:options.tmp + '/site/posts/about/index.html',
 			folder:dest+'/',
 			main:true
 		},

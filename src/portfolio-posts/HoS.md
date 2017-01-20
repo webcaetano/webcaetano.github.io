@@ -1,5 +1,5 @@
 <!-- header
-title: Heroes of the Soccer
+title: Heroes of Soccer
 header: true
 date: 01/17/2017
 author: webcaetano
