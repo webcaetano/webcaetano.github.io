@@ -12,13 +12,14 @@ module.exports = function(options) {
 	gulp.task('html', gulp.series('inject',function () {
 		return gulp.src(options.tmp + '/site/injected.tpl')
 			.pipe($.useref())
-			.pipe($.if('*.html', $.replace('bower_components', '../bower_components')))
+			// .pipe($.if('*.html', $.replace('bower_components', '../bower_components')))
 			.pipe($.if('*.js', $.preprocess({context: {dist: true}})))
 			.pipe($.if('*.js', $.uglify()))
 			.pipe($.if('*.css', $.cssmin()))
 			.pipe($.if('*.js',gulp.dest(dist+'/')))
 			.pipe(gulp.dest('./'))
 			.pipe($.size({ title: dist+'/', showFiles: true }));
+	// }));
 	},'template:dist'));
 
 	// gulp.task('copy:docs', function () {

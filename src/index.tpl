@@ -9,9 +9,9 @@
 	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
 
 	<!-- build:css(./) styles/vendor.css -->
-	<link rel="stylesheet" type="text/css" href="/bower_components/highlight/src/styles/monokai.css">
-	<link rel="stylesheet" type="text/css" href="/bower_components/bootstrap/dist/css/bootstrap.css">
-	<link rel="stylesheet" type="text/css" href="/bower_components/font-awesome/css/font-awesome.css">
+	<link rel="stylesheet" type="text/css" href="bower_components/highlight/src/styles/monokai.css">
+	<link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="bower_components/font-awesome/css/font-awesome.css">
 	<!-- endbuild -->
 
 	<!-- build:css({.tmp/site,site}) styles/styles.css -->

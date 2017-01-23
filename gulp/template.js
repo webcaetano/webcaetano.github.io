@@ -15,8 +15,8 @@ var $ = require('gulp-load-plugins')({
 
 
 module.exports = function(options) {
-	function wrapper(val){
-		var template = String(fs.readFileSync(options.tmp + '/site/injected.tpl'));
+	function wrapper(val,dist=false){
+		var template = String(fs.readFileSync((dist ? '' : options.tmp + '/site/')+'injected.tpl'));
 
 		var footer = _.template(String(fs.readFileSync('src/partials/footer.tpl')))({
 			version:pkg.version,
@@ -53,6 +53,10 @@ module.exports = function(options) {
 			path.extname = ".html"
 			if(val.main) path.basename = "index"
 		}))
+		.pipe($.if(function(file){
+			// return dist && path.extname(file.path)=='.html';
+			return path.extname(file.path)=='.html';
+		}, $.minifyHtml({empty: true, spare: true, quotes: true, conditionals: true})))
 		.pipe(gulp.dest(val.folder));
 	}
 
@@ -64,7 +68,7 @@ module.exports = function(options) {
 		],{force:true});
 	});
 
-	function templating(dest){
+	function templating(dest,dist=false){
 		var data = [{
 			files:options.tmp + '/site/posts/about/index.html',
 			folder:dest+'/',
@@ -80,7 +84,7 @@ module.exports = function(options) {
 		}];
 
 		return gulp.parallel(_.map(data,function(val){
-			return _.bind(wrapper,null,val)
+			return _.bind(wrapper,null,val,dist)
 		}));
 	}
 
@@ -100,6 +104,6 @@ module.exports = function(options) {
 
 	gulp.task('template',gulp.series(
 		'pre-template',
-		templating(options.tmp + '/site')
+		templating(options.tmp + '/site',true)
 	));
 };
