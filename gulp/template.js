@@ -53,10 +53,10 @@ module.exports = function(options) {
 			path.extname = ".html"
 			if(val.main) path.basename = "index"
 		}))
-		// .pipe($.if(function(file){
-		// 	// return dist && path.extname(file.path)=='.html';
-		// 	return path.extname(file.path)=='.html';
-		// }, $.minifyHtml({empty: true, spare: true, quotes: true, conditionals: true})))
+		.pipe($.if(function(file){
+			// return dist && path.extname(file.path)=='.html';
+			return path.extname(file.path)=='.html';
+		}, $.minifyHtml({empty: true, spare: true, quotes: true, conditionals: true})))
 		.pipe(gulp.dest(val.folder));
 	}
 
@@ -99,11 +99,11 @@ module.exports = function(options) {
 
 	gulp.task('template:dist',gulp.series(
 		'pre-template',
-		templating('.')
+		templating('.',true)
 	));
 
 	gulp.task('template',gulp.series(
 		'pre-template',
-		templating(options.tmp + '/site',true)
+		templating(options.tmp + '/site')
 	));
 };
