@@ -4,7 +4,7 @@ var gulp = require('gulp');
 var exec = require('sync-exec');
 
 var $ = require('gulp-load-plugins')({
-	pattern: ['gulp-*', 'del']
+	pattern: ['gulp-*', 'del', 'main-bower-files']
 });
 
 module.exports = function(options) {
@@ -15,12 +15,20 @@ module.exports = function(options) {
 			// .pipe($.if('*.html', $.replace('bower_components', '../bower_components')))
 			.pipe($.if('*.js', $.preprocess({context: {dist: true}})))
 			.pipe($.if('*.js', $.uglify()))
+			.pipe($.replace('../../bower_components/font-awesome/fonts/', '../fonts/'))
 			.pipe($.if('*.css', $.cssmin()))
 			.pipe($.if('*.js',gulp.dest(dist+'/')))
 			.pipe(gulp.dest('./'))
 			.pipe($.size({ title: dist+'/', showFiles: true }));
 	// }));
 	},'template:dist'));
+
+	gulp.task('fonts', function () {
+		return gulp.src($.mainBowerFiles())
+			.pipe($.filter('**/*.{eot,svg,ttf,woff,woff2}'))
+			.pipe($.flatten())
+			.pipe(gulp.dest(options.dist + '/fonts/'));
+	});
 
 	// gulp.task('copy:docs', function () {
 	// 	return gulp.src([
@@ -50,7 +58,8 @@ module.exports = function(options) {
 	gulp.task('build', gulp.series(
 		'clean:siteDist',
 		gulp.parallel(
-			'html'
+			'html',
+			'fonts'
 			// 'other'
 		),
 		'clean:tpl:dist'
