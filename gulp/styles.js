@@ -6,23 +6,24 @@ var browserSync = require('browser-sync');
 var $ = require('gulp-load-plugins')();
 
 module.exports = function(options) {
+	var siteFolder = 'src';
 	gulp.task('styles', function () {
 		var lessOptions = {
 			options: [
 				'bower_components',
-				options.src + '/styles',
+				siteFolder + '/styles',
 			]
 		};
 
 		var injectFiles = gulp.src([
-			options.src + '/{app,styles}/**/*.less',
-			'!' + options.src + '/less/index.less',
-			'!' + options.src + '/less/vendor.less'
+			siteFolder+'/styles/**/*.less',
+			'!' + siteFolder + '/styles/index.less',
+			'!' + siteFolder + '/styles/vendor.less'
 		], { read: false });
 
 		var injectOptions = {
 			transform: function(filePath) {
-				filePath = filePath.replace(options.src + '/less/', '');
+				filePath = filePath.replace(siteFolder + '/styles/', '');
 				return '@import \'' + filePath + '\';';
 			},
 			starttag: '// injector',
@@ -30,19 +31,19 @@ module.exports = function(options) {
 			addRootSlash: false
 		};
 
-		var indexFilter = $.filter('index.less');
+		var indexFilter = $.filter('index.less', {restore: true});
 
 		return gulp.src([
-			options.src + '/styles/index.less',
-			options.src + '/styles/vendor.less'
+			siteFolder + '/styles/index.less',
+			// siteFolder + '/styles/vendor.less'
 		])
-		.pipe(indexFilter)
-		.pipe($.inject(injectFiles, injectOptions))
-		.pipe(indexFilter.restore())
+		// .pipe(indexFilter)
+		.pipe($.if('index.less',$.inject(injectFiles, injectOptions)))
+		// .pipe(indexFilter.restore)
 		.pipe($.sourcemaps.init())
 		.pipe($.less(lessOptions)).on('error', options.errorHandler('Less'))
 		.pipe($.autoprefixer()).on('error', options.errorHandler('Autoprefixer'))
 		.pipe($.sourcemaps.write())
-		.pipe(gulp.dest(options.tmp + '/serve/styles/'))
+		.pipe(gulp.dest(options.tmp + '/site/styles/'))
 	});
 };

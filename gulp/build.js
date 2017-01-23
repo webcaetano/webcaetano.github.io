@@ -1,67 +1,72 @@
 'use strict';
 
 var gulp = require('gulp');
-var runSequence = require('run-sequence');
-var through = require('through2');
-var fs = require('fs');
+var exec = require('sync-exec');
 
 var $ = require('gulp-load-plugins')({
-	pattern: ['gulp-*', 'main-bower-files', 'uglify-save-license', 'del']
+	pattern: ['gulp-*', 'del']
 });
 
 module.exports = function(options) {
-	gulp.task('html', ['inject','markdown:dist'], function () {
-		var assets;
-		return gulp.src(options.tmp + '/serve/index.html')
-			.pipe(assets = $.useref.assets())
-			.pipe($.rev())
-			.pipe($.if('*.js', $.uglify()))
-			// .pipe($.replace('../../bower_components/font-awesome-less/fonts/', '../fonts/'))
-			// .pipe($.replace('../../bower_components/font-awesome-less/fonts/', '../fonts/'))
-			.pipe($.if('*.css', $.csso()))
-			.pipe($.if('*.css', $.replace('../images/', '../src/images/')))
-			.pipe(assets.restore())
+	var dist = '';
+	gulp.task('html', gulp.series('inject',function () {
+		return gulp.src(options.tmp + '/site/injected.tpl')
 			.pipe($.useref())
-			.pipe($.revReplace())
-			.pipe($.if('*.html', $.minifyHtml({empty: true,	spare: true, quotes: true, conditionals: true})))
-			.pipe(gulp.dest(options.dist + '/'))
-			.pipe($.size({ title: options.dist + '/', showFiles: true }));
+			.pipe($.if('*.html', $.replace('bower_components', '../bower_components')))
+			.pipe($.if('*.js', $.preprocess({context: {dist: true}})))
+			.pipe($.if('*.js', $.uglify()))
+			.pipe($.if('*.css', $.cssmin()))
+			.pipe($.if('*.js',gulp.dest(dist+'/')))
+			.pipe(gulp.dest('./'))
+			.pipe($.size({ title: dist+'/', showFiles: true }));
+	},'template:dist'));
+
+	// gulp.task('copy:docs', function () {
+	// 	return gulp.src([
+	// 		// options.src + '/favicon.ico',
+	// 		options.tmp + '/site/docs/**/*.html',
+	// 	])
+	// 	.pipe(gulp.dest('siteDist/docs'));
+	// });
+
+	gulp.task('clean:siteDist', function (done) {
+		return $.del([
+			// dist+'/',
+			'index.html',
+			'styles',
+			'scripts',
+			'posts',
+			'portfolio-posts',
+		],{force:true});
 	});
 
-	// Only applies for fonts from bower dependencies
-	// Custom fonts are handled by the "other" task
-	gulp.task('fonts', function () {
-		return gulp.src($.mainBowerFiles())
-			.pipe($.filter('**/*.{eot,svg,ttf,woff,woff2}'))
-			.pipe($.flatten())
-			.pipe(gulp.dest(options.dist + '/fonts/'));
+	gulp.task('clean:tpl:dist', function (done) {
+		return $.del([
+			'./injected.tpl',
+		],{force:true});
 	});
 
-	gulp.task('other', function () {
-		return gulp.src([
-			options.src + '/favicon.ico',
-			options.src + '/404.html',
-			// '!' + options.src + '/**/*.{css,js,less}'
-		])
-		.pipe(gulp.dest(options.dist + '/'));
-	});
+	gulp.task('build', gulp.series(
+		'clean:siteDist',
+		gulp.parallel(
+			'html'
+			// 'other'
+		),
+		'clean:tpl:dist'
+		// 'copy:docs'
+	));
 
-	gulp.task('clean', function (done) {
-		$.del([
-			options.dist + '/scripts',
-			options.dist + '/styles',
-			options.dist + '/posts',
-			options.tmp + '/'
-		], done);
-	});
+	gulp.task('deploy:site',gulp.series('build',function(done){
+		var c = [
+			'cd '+dist,
+			'git init',
+			'git add .',
+			'git commit -m "Deploy to Github Pages"',
+			'git push --force git@github.com:webcaetano/craft.git master:gh-pages' // change adress to you repo
+		].join(" && ")
+		console.log(exec(c));
+		done();
+	}));
 
-
-	gulp.task('build',function(done){
-		// runSequence('clean',['html', 'fonts', 'other'],'rest',done);
-		runSequence('clean',['html', 'other'],'posts:dist',done);
-	});
-
-	gulp.task('deploy',function(done){
-		runSequence('build','p',done);
-	})
+	// gulp.task('deploy:site:build',gulp.series('build:site','deploy:site'))
 };

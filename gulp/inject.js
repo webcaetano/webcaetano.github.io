@@ -1,54 +1,80 @@
 'use strict';
 
 var gulp = require('gulp');
-
+var _ = require('lodash');
+var fs = require('fs');
 var $ = require('gulp-load-plugins')();
-var handlebars = require('gulp-compile-handlebars');
-// var glob = require('glob');
+var pkg = JSON.parse(fs.readFileSync('./package.json'));
 var wiredep = require('wiredep').stream;
-// var path = require('path');
 
-var wiredep = require('wiredep').stream;
 
 module.exports = function(options) {
-	gulp.task('inject', ['scripts', 'styles'], function () {
-		var injectStyles = gulp.src([
-			options.tmp + '/serve/{styles,components}/**/*.css',
-			'!' + options.tmp + '/serve/styles/vendor.css'
-		], { read: false });
 
-
-		var injectScripts = gulp.src([
-			options.tmp + '/serve/{app,components}/**/*.js',
-			// '!' + options.src + '/{app,components}/**/*.spec.js',
-			// '!' + options.src + '/{app,components}/**/*.mock.js'
-		], { read: false });
-
-		var injectOptions = {
-			ignorePath: [options.src, options.tmp + '/serve'],
-			addRootSlash: false
-		};
-
+	var inject = function(dev=true){
 		var wiredepOptions = {
-			//ignorePath: /^(\.\.\/)*\.\./
-			directory: 'bower_components'
+			directory: 'bower_components',
+			devDependencies: dev
 		};
 
-		return gulp.src(options.src + '/index.hbs')
-			.pipe(handlebars({
-				date:{
-					day:(new Date()).getYear(),
-					year:(new Date()).getFullYear(),
-					month:(new Date()).getMonth(),
+		return gulp.src('src/index.tpl')
+
+			.pipe($.inject(
+				gulp.src(
+					[
+						options.tmp + '/site/scripts/**/*.js'
+					],
+					{read: false}
+				),
+				{
+					starttag: '<!-- inject:scripts:{{ext}} -->',
+					ignorePath: [
+						options.tmp + '/site'
+					],
+					addRootSlash: false
 				}
-			},{
-				ignorePartials: true,
-				batch : [options.src+'/views']
+			))
+
+			.pipe($.inject(
+				gulp.src(
+					[
+						options.tmp + '/site/styles/**/*.css'
+					],
+					{read: false}
+				),
+				{
+					starttag: '<!-- inject:styles:{{ext}} -->',
+					ignorePath: [
+						options.tmp + '/site'
+					],
+					addRootSlash: false
+				}
+			))
+
+
+			// .pipe(wiredep({
+			// 	include:['bower_components/lodash/lodash.js']
+			// }))
+			// .pipe($.template({
+			// 	date:{
+			// 		day:(new Date()).getYear(),
+			// 		year:(new Date()).getFullYear(),
+			// 		month:(new Date()).getMonth(),
+			// 	}
+			// }))
+			.pipe($.rename(function (path) {
+				// path.extname = ".html"
+				path.basename = "injected"
 			}))
-			.pipe($.extname())
-			.pipe($.inject(injectStyles, injectOptions))
-			.pipe($.inject(injectScripts, injectOptions))
-			.pipe(wiredep(wiredepOptions))
-			.pipe(gulp.dest(options.tmp + '/serve'));
-	});
+			.pipe(gulp.dest(options.tmp + '/site'));
+	}
+
+	gulp.task('inject', gulp.series(gulp.parallel('scripts','styles'), function injectDev() {
+		return inject();
+	}));
+
+	// gulp.task('inject:site:dist', gulp.series(gulp.parallel('scripts','styles'), function injectDev() {
+	// 	return inject(false);
+	// }));
 };
+
+

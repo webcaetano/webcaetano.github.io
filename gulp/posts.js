@@ -1,110 +1,69 @@
-
 'use strict';
 
 var gulp = require('gulp');
-var runSequence = require('run-sequence');
 var through = require('through2');
 var path = require('path');
-var emoji = require('node-emoji');
+var glob = require('glob');
 var _ = require('lodash');
 var fs = require('fs');
-var emojize = require('emojize').emojize
-
+var getFileHeader = require('./getFileHeader');
 
 var $ = require('gulp-load-plugins')({
 	pattern: ['gulp-*', 'del']
 });
 
-var homePage = 'about';
+var escapeMarkdown = function(content){
+	return content.replace(/<!--esc(.|\n)*?-->/g,function(val){
+		return val
+		.replace(/<!--esc/,'<%')
+		.replace(/-->/,'%>')
+	})
+}
 
 module.exports = function(options) {
-	function posts(dest,template){
-		return gulp.src(options.tmp + '/serve/posts/**/*.html')
-		.pipe(through.obj(function (file, enc, callback) {
-			var newContent = String(file.contents);
+	function posts(files){
+		return function posts(){
 
-			// emoji compile
-			newContent = emojize(emoji.emojify(newContent));
-			var emojis = newContent.match(/<span class="emoji _.*?<\/span>/g);
-			if(emojis){
-				_.each(emojis,function(emoji,i){
-					newContent = newContent.replace(new RegExp(emoji,'g'),'<img class="emoji" src="https://assets-cdn.github.com/images/icons/emoji/unicode/'+emoji.replace(/<span class="emoji _/g,'').replace(/"><\/span>/g,'')+'.png">')
+			return gulp.src(files)
+			.pipe(through.obj(function (file, enc, callback) {
+				var postHeader = ''
+				var content = String(file.contents);
+
+				var data = getFileHeader(content);
+
+				content =
+				(data.title ? `<h1>${data.title}</h1><div class="post-line"></div>` : '')+`
+				`+(data.header ? '<%= postHeader %>' : '')+`
+				`+content;
+
+				if(data.header){
+					postHeader = _.template(String(fs.readFileSync('src/partials/post-header.tpl')))({
+						data,
+					});
+				}
+
+				content = escapeMarkdown(content);
+
+				content = _.template(content)({
+					data,
+					postHeader,
 				})
-			}
+				.replace(/<!-- header\n(.|\n)*?\nheader -->/g,'');
 
-			newContent = template.replace(/\[\[POSTS\]\]/g,newContent);
-			file.contents = new Buffer(newContent);
-			callback(null,file);
-		}))
-		.pipe(gulp.dest(dest));
+				file.contents = new Buffer(content);
+
+				callback(null,file);
+
+				return file;
+			}))
+			.pipe(gulp.dest(options.tmp+'/site'));
+		}
 	}
 
-	function markdown(env){
-		return gulp.src([
-			options.src + '/posts/**/*.md',
-			options.src + '/portfolio-posts/**/*.md',
-		])
-		.pipe($.markdown({
-			highlight: function(code) {
-				return require('highlight.js').highlightAuto(code).value;
-			},
-			header: true
-		}))
-		.pipe($.cheerio(function ($$, file) {
-			var firstTitle = $$('h1').eq(0).text();
-			if(!firstTitle) firstTitle=path.basename(file.path,path.extname(file.path));
-			file.path = path.join(path.dirname(file.path),
-				"/posts/",
-				firstTitle.replace(/\s+/g,'-').toLowerCase(),
-				'/index'+path.extname(file.path)
-			);
-		}))
-		.pipe($.if(function(){
-			return env=='dist'
-		}, $.replace('src="images/', 'src="../src/images/')))
-		.pipe(gulp.dest(options.tmp+'/serve'));
-	}
-
-	gulp.task('homepage',function(){
-		return gulp.src(options.tmp + '/serve/posts/'+homePage+'/index.html')
-		.pipe($.replace('<base href="../../">',''))
-		.pipe(gulp.dest(options.tmp+'/serve'));
-	});
-
-	gulp.task('homepage:dist',function(){
-		return gulp.src(options.dist + '/posts/'+homePage+'/index.html')
-		.pipe($.replace('<base href="../../">',''))
-		.pipe(gulp.dest(options.dist+'/'));
-	});
-
-	gulp.task('markdown',['clean:posts'], function () {
-		return markdown();
-	});
-
-	gulp.task('markdown:dist',['clean:posts'], function () {
-		return markdown('dist');
-	});
-
-	gulp.task('clean:posts', function (done) {
-		$.del([
-			options.tmp + '/serve/posts'
-		], done);
-	});
-
-
-	gulp.task('posts:make:dist',function(done){
-		return posts(options.dist + '/posts',String(fs.readFileSync('index.html')))
-	});
-
-	gulp.task('posts:make',function(done){
-		return posts(options.tmp + '/serve/posts',String(fs.readFileSync(options.tmp+'/serve/index.html')))
-	});
-
-	gulp.task('posts',function(done){
-		runSequence(['markdown','inject'],'posts:make','homepage',done)
-	});
-
-	gulp.task('posts:dist',function(done){
-		runSequence('posts:make:dist','homepage:dist',done)
-	});
+	gulp.task('posts', gulp.series(
+		'markdown',
+		posts(
+			options.tmp+'/site/**/*.html'
+		)
+	));
 };

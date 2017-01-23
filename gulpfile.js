@@ -3,8 +3,11 @@
 var gulp = require('gulp');
 var gutil = require('gulp-util');
 var _ = require('lodash');
-var wrench = require('wrench');
+var path = require('path');
+var fs = require('fs');
+var pkg = JSON.parse(fs.readFileSync('./package.json'));
 
+var folder = path.basename(path.resolve(__dirname,'./'));
 var options = {
 	src: 'src',
 	dist: './',
@@ -14,16 +17,25 @@ var options = {
 			gutil.log(gutil.colors.red('[' + title + ']'), err.toString());
 			this.emit('end');
 		};
-	}
+	},
 };
 
-wrench.readdirSyncRecursive('./gulp').filter(function(file) {
-	return (/\.(js|coffee)$/i).test(file);
-}).map(function(file) {
-	if(file.match(/templates\\/g)) return;
+_.each([
+	'github.js',
+	'scripts.js',
+	'styles.js',
+	'inject.js',
+	'markdown.js',
+	'posts-grid.js',
+	'posts.js',
+	'template.js',
+	'watch.js',
+	'server.js',
+	'build.js',
+],function(file){
 	require('./gulp/' + file)(options);
 });
 
-gulp.task('default', ['clean'], function () {
-	gulp.start('serve');
-});
+gulp.task('default',function(done){
+	done();
+})

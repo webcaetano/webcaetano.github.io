@@ -1,18 +1,23 @@
-# About
+<!-- header
+title: About
+header -->
 
-Hi! I'm 26 years old and i'm an independent Game Developer :space_invader: <br>
+Hi! I'm <!--esc 
+	print(Math.floor( ((new Date()).getTime() - (new Date(1989, 8, 14)).getTime()) / (1000 * 60 * 60 * 24 * 365.25))) 
+--> years old and I'm an Indie Game Developer <br>
 Glad to have you spend a short time with me.
 
-I'm an enthusiastic about gaming developing, really enjoy and have fun in doing it. <br>
+I'm an big enthusiastic about gaming developing, really enjoy and have fun in doing it.<br>
 
-During 2008 to 2013 i have been working in my own browser-based game as standalone. <br>
-The game called **Brgol** *(google it, there's many images from fan-blogs)*. <br>
-It's was an very successfull soccer brazilian game. :soccer:<br>
-I have decide to stop it on 2013 to focus in internacional content.
+During 5 years i worked on my own browser-based game<br>
+It's was an very successful Brazilian soccer game. With up 50k players registered.<br>
 
-Currently i'm dedicating to open-source projects and html5 games.<br>
-I have vast knowlegde in many languages (front and back), and in create assets like animated sprites and GUI.
+Currently I'm dedicating to freelancing and open-source projects.<br>
+Most of all in `Phaser`.<br>
+`Phaser` was a big watershed in my gaming career.<br>
+I also have a vast knowledge in many languages (front and back-end),<br>
+and good level at artwork and animation. 
 
-Are you looking for <b>a developer who cares about sprites</b> or 
-<b>a designer who enjoy code</b> in the US, Canada or UK? <i class="flag flag-us"></i> <i class="flag flag-ca"></i> <i class="flag flag-gb"></i><br /> 
+Are you looking for a developer who cares about sprites,<br>
+or a very passionated person about game making, in the US, Canada or UK? <i class="flag flag-us"></i> <i class="flag flag-ca"></i> <i class="flag flag-gb"></i><br /> 
 I'm both, and if you've got an exciting gig, I'd love to know.
