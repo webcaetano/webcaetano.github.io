@@ -13,7 +13,7 @@ header -->
 
 Multiplayer isometric plataform, with tilesets.<br>
 Monsters movements are operated by a `nodejs` server.<br>
-I had to make a map editor for this plataform, you can <a href="http://webcaetano.github.io/posts/map-editor">see it here.</a><br>
+I had to make a map-editor for this plataform, you can <a href="http://webcaetano.github.io/portfolio-posts/Map+Editor/">see it here.</a><br>
 
 This project was intent to be a MMORPG isometric, based on Ragnarok Online<br>
 I'm still very pasionated about this project.<br>
