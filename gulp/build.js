@@ -15,7 +15,7 @@ module.exports = function(options) {
 			// .pipe($.if('*.html', $.replace('bower_components', '../bower_components')))
 			.pipe($.if('*.js', $.preprocess({context: {dist: true}})))
 			.pipe($.if('*.js', $.uglify()))
-			.pipe($.replace('../../bower_components/font-awesome/fonts/', '../fonts/'))
+			// .pipe($.replace('../../bower_components/font-awesome/fonts/', '../fonts/'))
 			.pipe($.if('*.css', $.cssmin()))
 			.pipe($.if('*.js',gulp.dest(dist+'/')))
 			.pipe(gulp.dest('./'))
@@ -24,10 +24,10 @@ module.exports = function(options) {
 	},'template:dist'));
 
 	gulp.task('fonts', function () {
-		return gulp.src($.mainBowerFiles())
+		return gulp.src('./bower_components/font-awesome/fonts/**/*')
 			.pipe($.filter('**/*.{eot,svg,ttf,woff,woff2}'))
 			.pipe($.flatten())
-			.pipe(gulp.dest(options.dist + '/fonts/'));
+			.pipe(gulp.dest('./fonts'));
 	});
 
 	// gulp.task('copy:docs', function () {
