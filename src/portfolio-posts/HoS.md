@@ -29,7 +29,7 @@ Only because the lack of marketplaces for that.
 ### Avatar
 
 Here a demo functional of the game avatar.<br>
-The art i bought from a professional manga artist [@moorina](https://twitter.com/booniecake)<br>
+The avatar art i bought from a professional manga artist [@moorina](https://twitter.com/booniecake)<br>
 Which i strongly endorse.<br>
 Click around.<br>
 
