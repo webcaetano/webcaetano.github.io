@@ -53,10 +53,10 @@ module.exports = function(options) {
 			path.extname = ".html"
 			if(val.main) path.basename = "index"
 		}))
-		.pipe($.if(function(file){
-			// return dist && path.extname(file.path)=='.html';
-			return path.extname(file.path)=='.html';
-		}, $.minifyHtml({empty: true, spare: true, quotes: true, conditionals: true})))
+		// .pipe($.if(function(file){
+		// 	// return dist && path.extname(file.path)=='.html';
+		// 	return path.extname(file.path)=='.html';
+		// }, $.minifyHtml({empty: true, spare: true, quotes: true, conditionals: true})))
 		.pipe(gulp.dest(val.folder));
 	}
 
