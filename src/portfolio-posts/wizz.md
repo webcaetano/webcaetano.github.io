@@ -16,6 +16,19 @@ It was made at December 2015.<br>
 The challenge part was the art.<br>
 Drawing and panting is not my thing.<br>
 I had to study a lot to improve my illustration skills<br>
+#### Art software used
+- `Paint SAI tool` General illustration and sketching.
+- `Photoshop` UI and sprite editions.
+- `Flash` Sprite drawing and animations.
+
+#### Programing
+- `Phaser` Game engine.
+
+#### General Developing Tools
+- `GulpJS`
+- [gulp.spritesmith](https://github.com/twolfson/gulp.spritesmith) for sprites textures
+- Version control on `Git` and `Github`
+
 Here a few 'timelapse' from the artwork :
 
 <div align="center">
@@ -42,6 +55,11 @@ But `Phaser` still missing a few features that `Flash` have.
 You can apply it for the mayor marketplaces like:  `Steam`, `Apple Store`, `Play Store`, `Amazon Store`.<br>
 
 ## The game
+
+**Commands:**<br>
+- Click to cast spell.
+- Press `1` to cast laser beam.
+- Press `2` to cast spell blast.
 
 <div align="center">
 	<iframe src="http://webcaetano.github.io/wizz" width="700" height="500" scrolling="no"></iframe>
