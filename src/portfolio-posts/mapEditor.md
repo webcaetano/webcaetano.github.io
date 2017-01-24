@@ -13,11 +13,14 @@ header -->
 
 MapEditor of tileset assets<br>
 With layers, brush, bucket and eraser, tool.<br>
-Write on **Flash**.
+Write on `Flash`.
 
-Assets also are made in **Flash**.
+Assets also are made in `Flash`.
 
-Hotkeys: <br>
+**Commands:**<br>
+- Click to place the tilesets
+- On Bottom-Right you can choose the tile style
+- On Top-Left you can switch tools, and change layers
 - **G** Show/Hide Grid.<br>
 - **SPACE** Drag and Drop Map<br>
 
