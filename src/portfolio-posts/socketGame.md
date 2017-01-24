@@ -15,17 +15,20 @@ Multiplayer isometric plataform, with tilesets.<br>
 Monsters movements are operated by a `nodejs` server.<br>
 I had to make a map-editor for this plataform, you can <a href="http://webcaetano.github.io/portfolio-posts/Map+Editor/">see it here.</a><br>
 
-This project was intent to be a MMORPG isometric, based on Ragnarok Online<br>
-I'm still very pasionated about this project.<br>
-But it could take years to launch the beta, if maked all alone<br>
-And i can't support all that by myself 
+This project is a MMORPG isometric, based on Ragnarok Online<br>
+On this demo, the orcs are players and the pink blobs are cpu-monsters
 
-I have switch this project to `Phaser` but its not live. 
+I have switch this whole project to `Phaser` but its not live. 
 
 Write on : 
 - `NodeJS`
 - `Socket.io`
 - `Flash`
+
+**Commands:**<br>
+- Click on map to walk
+- Click black bar, type, and hit enter to chat
+
 
 <div align="center">
 	<iframe src="http://45.55.171.155:3000" width="550" height="400" scrolling="no"></iframe>
