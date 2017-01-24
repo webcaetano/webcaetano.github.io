@@ -21,7 +21,7 @@ Version control: `Git` and `Github`
 For the avatar textures i used [gulp.spritesmith](https://github.com/twolfson/gulp.spritesmith)<br>
 instead of `texturepacker` making it full automated and more customizable. 
 
-The 'score plataform' art, was made on `Photoshop` and `3dMax`.<br>
+The 'score plataform' art, was made on `Photoshop` and `3dsMax`.<br>
 And the engine on `Phaser`<br>
 
 ### Screen-shoots
