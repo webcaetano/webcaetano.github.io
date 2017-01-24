@@ -35,11 +35,11 @@ The majority of time was spent doing the assets.<br>
 
 ### Things that i learn from this project
 
-- This was my first game from `Phaser`. It is a lot better than `Flash`. But `Phaser` does not have all `Flash` features.
-- We live in a time that we have `Steam`, `Apple Store`, `Play Store`, `Amazon Store`.<br>
-Making a game that does not fit for any of those marketplaces is a waste of time.<br>
-And `Phaser` fit them all. But you have to keep this in mind at the beginning of the development, not at the end. 
-
+- This was my first game from `Phaser`.<br>
+It is a lot better than `Flash` and it are `open-source` which is huge.<br>
+But `Phaser` still missing a few features that `Flash` have. 
+- On `Phaser` you can create games for **mobile**, **PC**, **browsers** and even **consoles**.<br>
+You can apply it for the mayor marketplaces like:  `Steam`, `Apple Store`, `Play Store`, `Amazon Store`.<br>
 
 ## The game
 
