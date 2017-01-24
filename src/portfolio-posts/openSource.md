@@ -60,7 +60,6 @@ Here's a list of open-source projects of my authorship:<br>
 Jinx is project that bring package managers (npm) to `Flash` world.<br>
 Making it a modular like<br>
 It is a precompiler language of `.jinx` into `.as` (ActionScript3)<br>
-The project was discontinued since i leave `Flash` for good
 
 - [jinx](http://github.com/webcaetano/jinx) Jinx boilerplate
 - [jinx-mempanel](http://github.com/webcaetano/jinx-mempanel) A status panel
