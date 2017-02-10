@@ -36,9 +36,9 @@ module.exports = function(options) {
 		.pipe(through.obj(function (file, enc, callback) {
 			var content = String(file.contents);
 
-			content =
-			(data.title ? `<h1>${data.title}</h1>` : '')+`
-			`+content;
+			// content =
+			// (data.title ? `<h1>${data.title}</h1>` : '')+`
+			// `+content;
 
 			content = _.template(content)({
 				posts,

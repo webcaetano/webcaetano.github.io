@@ -1,7 +1,7 @@
 <!-- header
 title: Contact
 header -->
-
+<div class="post-content">
 <i class="contact-icon fa fa-github"></i> Github: <a href="https://github.com/webcaetano" target="_blank">@webcaetano</a><br>
 <i class="contact-icon fa fa-envelope"></i> Email: webandrecaetano@gmail.com<br>
 <i class="contact-icon fa fa-linkedin"></i> Linkedin: https://www.linkedin.com/in/andre-caetano-64827b59<br>
@@ -11,4 +11,5 @@ header -->
 			<i class="fa fa-user-circle"></i> Resume
 		</div>
 	</a>
+</div>
 </div>

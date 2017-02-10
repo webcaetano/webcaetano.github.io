@@ -4,12 +4,34 @@
 	// .font-open;
 
 	font-size: 1.25em;
-	padding-left: 20px;
-	padding-right: 20px;
 	color: #5D5D5D;
 	padding-bottom: 10px;
+	padding-left: 0px;
+	padding-right: 0px;
 	text-align: left;
 	line-height:28px;
+
+	.post-content {
+		padding-left: 40px;
+		padding-right: 40px;
+	}
+
+	.post-header {
+		width: 100%;
+		height: 100px;
+
+		h1 {
+			line-height: 100px;
+			background-color: #2CBCFF;
+			background-color: lighten(@color3,5%);
+			color:#FFF;
+			margin-top:0px;
+
+			&:hover {
+				color:#FFF;
+			}
+		}
+	}
 
 	.post-line {
 		display: inline-block;

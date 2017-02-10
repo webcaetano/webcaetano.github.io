@@ -9,7 +9,7 @@ tags:
 	- Indie Game
 	- Phaser
 header -->
-
+<div class="post-content">
 This is a project i was working at end of 2015.<br>
 It was intent to be the a new version of my old Brazilian browser game **(BRGOL)**, but international.<br>
 
@@ -47,4 +47,5 @@ Which i strongly endorse.<br><br>
 
 <div align="center">
 	<iframe src="https://webcaetano.github.io/heroes-avatar/" width="470" height="440" scrolling="no"></iframe>
+</div>
 </div>

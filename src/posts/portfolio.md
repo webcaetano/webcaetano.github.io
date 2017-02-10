@@ -1,7 +1,7 @@
 <!-- header
 title: Portfolio
 header -->
-
+<div class="post-content">
 <div class="portfolio-containers">
 
 <a href="/posts/demo-socket-game"><div class="mini-layout game-preview">
@@ -19,4 +19,5 @@ header -->
 	<div class="title">HTML5 Isometric 3d</div>
 </div></a>
 
+</div>
 </div>

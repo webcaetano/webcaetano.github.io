@@ -1,3 +1,7 @@
+<!-- header
+title: Portofolio
+header -->
+
 <div class="posts-grid" align="center">
 	<%
 	_.each(posts,function(post){

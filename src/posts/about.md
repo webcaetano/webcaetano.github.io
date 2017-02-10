@@ -1,7 +1,7 @@
 <!-- header
 title: About
 header -->
-
+<div class="post-content">
 Hello, my name is Andre Caetano.<br>
 <br>
 I'm <!--esc 
@@ -25,3 +25,4 @@ In addition to game development, I am also proficient with many creative tools s
 Being capable of generating basic sprite animations. If you are looking for a developer who cares about sprites,<br>
 and is very impassioned about game making, you've found him.I'm both, and if you've got an exciting gig,<br>
 I'd love to hear about it.
+</div>

@@ -10,7 +10,7 @@ tags:
 	- Socket.io
 	- Isometric
 header -->
-
+<div class="post-content">
 Multiplayer isometric plataform, with tilesets.<br>
 Monsters movements are operated by a `nodejs` server.<br>
 I had to make a map-editor for this plataform, you can <a href="http://webcaetano.github.io/portfolio-posts/Map+Editor/">see it here.</a><br>
@@ -34,4 +34,4 @@ Write on :
 	<iframe src="http://45.55.171.155:3000" width="550" height="400" scrolling="no"></iframe>
 </div>
 
-
+</div>
