@@ -58,8 +58,6 @@ module.exports = function(options) {
 					});
 				}
 
-				console.log(data.title)
-
 				if(data.main){
 					templateData.posts =  _.reverse(_.sortBy(getPosts('src/portfolio-posts/**/*.md'),function(val){
 						if(!val.date) return 0;
