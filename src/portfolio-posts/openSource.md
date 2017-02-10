@@ -9,7 +9,7 @@ tags:
 	- Github
 	- Open Source
 header -->
-<div class="post-content">
+<!--esc print('<div class="post-content">') -->
 I really enjoy be part of the open-source community<br>
 I have to concept that any software can be so much more powerful<br>
 when they are open-source.<br><br>
@@ -67,4 +67,4 @@ It is a precompiler language of `.jinx` into `.as` (ActionScript3)<br>
 - [jinx-console](http://github.com/webcaetano/jinx-console) Plugin for log flash into browser console 
 - [jinx-events](http://github.com/webcaetano/jinx-events) Utility library with chainable methods 
 - [jinx-error-catcher](http://github.com/webcaetano/jinx-error-catcher) Plugin for error treatment into browser console
-</div>
+<!--esc print('</div>')  -->

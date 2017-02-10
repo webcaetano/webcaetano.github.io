@@ -10,7 +10,7 @@ tags:
 	- Socket.io
 	- Isometric
 header -->
-<div class="post-content">
+<!--esc print('<div class="post-content">') -->
 MapEditor of tileset assets<br>
 With layers, brush, bucket and eraser, tool.<br>
 Write on `Flash`.
@@ -28,4 +28,4 @@ Assets also are made in `Flash`.
 <div align="center">
 	<iframe src="http://45.55.171.155:3000/mapEdit" width="700" height="600" scrolling="no"></iframe>
 </div>
-</div>
+<!--esc print('</div>')  -->

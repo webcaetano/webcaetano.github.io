@@ -9,7 +9,7 @@ tags:
 	- Indie Game
 	- Phaser
 header -->
-<div class="post-content">
+<!--esc print('<div class="post-content">') -->
 Wizard of the shrine is my first `Phaser` game.<br>
 It was made at December 2015.<br>
 
@@ -66,6 +66,7 @@ You can apply it for the mayor marketplaces like:  `Steam`, `Apple Store`, `Play
 </div>
 
 ### ScreenShoots
+
 <div align="center">
 	<img src="https://cloud.githubusercontent.com/assets/2578320/12069083/a47b7fa0-b005-11e5-9761-1d478e236e03.png">
 	<br>
@@ -81,4 +82,5 @@ You can apply it for the mayor marketplaces like:  `Steam`, `Apple Store`, `Play
 	<br>
 	<img src="https://cloud.githubusercontent.com/assets/2578320/12069082/a10dba0e-b005-11e5-8402-aaefe2a19dd4.png">
 </div>
-</div>
+
+<!--esc print('</div>')  -->

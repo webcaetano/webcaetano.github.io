@@ -7,6 +7,7 @@ var _ = require('lodash');
 var glob = require('glob');
 var fs = require('fs');
 var pkg = JSON.parse(fs.readFileSync(path.join(__dirname,'../package.json')));
+var urlEncode = require('./urlEncode');
 var getFileHeader = require('./getFileHeader');
 
 var $ = require('gulp-load-plugins')({
@@ -70,14 +71,14 @@ module.exports = function(options) {
 
 	function templating(dest,dist=false){
 		var data = [{
-			files:options.tmp + '/site/posts/about/index.html',
+			files:options.tmp + '/site/partials/main.html',
 			folder:dest+'/',
 			main:true
 		},
-		{
-			files:options.tmp + '/site/posts/**/*.html',
-			folder:dest+'/posts/',
-		},
+		// {
+		// 	files:options.tmp + '/site/posts/**/*.html',
+		// 	folder:dest+'/posts/',
+		// },
 		{
 			files:options.tmp + '/site/portfolio-posts/**/*.html',
 			folder:dest+'/portfolio-posts/',
@@ -92,7 +93,7 @@ module.exports = function(options) {
 		'clean:siteTmp',
 		gulp.parallel(
 			'posts',
-			'postsGrid',
+			// 'postsGrid',
 			'inject'
 		)
 	));

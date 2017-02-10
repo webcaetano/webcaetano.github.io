@@ -10,7 +10,7 @@ tags:
 	- Socket.io
 	- Isometric
 header -->
-<div class="post-content">
+<!--esc print('<div class="post-content">') -->
 Multiplayer isometric plataform, with tilesets.<br>
 Monsters movements are operated by a `nodejs` server.<br>
 I had to make a map-editor for this plataform, you can <a href="http://webcaetano.github.io/portfolio-posts/Map+Editor/">see it here.</a><br>
@@ -35,3 +35,4 @@ Write on :
 </div>
 
 </div>
+<!--esc print('</div>')  -->

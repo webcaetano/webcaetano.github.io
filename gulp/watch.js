@@ -9,7 +9,9 @@ module.exports = function(options) {
 		done();
 	}));
 
-	gulp.task('watch', gulp.series('inject','template',gulp.parallel('scripts:watch'), function watch(done) {
+	gulp.task('watch', gulp.series(
+		// 'inject',
+		'template',gulp.parallel('scripts:watch'), function watch(done) {
 
 		gulp.watch([
 			'src/index.tpl',

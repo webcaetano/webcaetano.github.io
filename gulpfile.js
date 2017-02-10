@@ -26,7 +26,6 @@ _.each([
 	'styles.js',
 	'inject.js',
 	'markdown.js',
-	'posts-grid.js',
 	'posts.js',
 	'template.js',
 	'watch.js',

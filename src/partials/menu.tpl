@@ -2,15 +2,15 @@
 	<%
 	_.each([
 		{
-			link:'/posts/about',
+			link:'/#about',
 			name:'About'
 		},
 		{
-			link:'/portfolio-posts',
+			link:'/#portofolio',
 			name:'Portfolio'
 		},
 		{
-			link:'/posts/contact',
+			link:'/#contact',
 			name:'Contact'
 		},
 	],function(val){
