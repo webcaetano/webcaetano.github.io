@@ -28,6 +28,8 @@ Here's a list of open-source projects of my authorship:<br>
 - [mysqldump](http://github.com/webcaetano/mysqldump) Backup for MySQL
 - [pad-rename](http://github.com/webcaetano/pad-rename) CLI for renaming multiple files, very useful for sprite animations frames
 - [copy-random](http://github.com/webcaetano/copy-random) CLI for copy random target files, useful for pick random sprites from a animation
+- [flatten-dirname](https://github.com/webcaetano/flatten-dirname) CLI for flatten files to from relative folders. But keep dirname on filename.
+- [filename-to-dir](https://github.com/webcaetano/filename-to-dir) CLI for use filenames to create folders schema.
 - [shuffle-seed](http://github.com/webcaetano/shuffle-seed) Array Shuffle based on a seed.
 - [mq-node](http://github.com/webcaetano/mq-node) MySQL library for node
 - [image-scramble](http://github.com/webcaetano/image-scramble) Image scrambler based on a seed. 
