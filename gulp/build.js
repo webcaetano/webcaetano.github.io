@@ -55,6 +55,7 @@ module.exports = function(options) {
 		],{force:true});
 	});
 
+	// use this, then commit to deploy
 	gulp.task('build', gulp.series(
 		'clean:siteDist',
 		gulp.parallel(
@@ -66,17 +67,17 @@ module.exports = function(options) {
 		// 'copy:docs'
 	));
 
-	gulp.task('deploy:site',gulp.series('build',function(done){
-		var c = [
-			'cd '+dist,
-			'git init',
-			'git add .',
-			'git commit -m "Deploy to Github Pages"',
-			'git push --force git@github.com:webcaetano/craft.git master:gh-pages' // change adress to you repo
-		].join(" && ")
-		console.log(exec(c));
-		done();
-	}));
+	// gulp.task('deploy:site',gulp.series('build',function(done){
+	// 	var c = [
+	// 		'cd '+dist,
+	// 		'git init',
+	// 		'git add .',
+	// 		'git commit -m "Deploy to Github Pages"',
+	// 		'git push --force git@github.com:webcaetano/craft.git master:gh-pages' // change adress to you repo
+	// 	].join(" && ")
+	// 	console.log(exec(c));
+	// 	done();
+	// }));
 
 	// gulp.task('deploy:site:build',gulp.series('build:site','deploy:site'))
 };
