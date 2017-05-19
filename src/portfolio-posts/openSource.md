@@ -27,6 +27,7 @@ Here's a list of open-source projects of my authorship:<br>
 ### Node Modules
 - [mysqldump](http://github.com/webcaetano/mysqldump) Backup for MySQL
 - [pad-rename](http://github.com/webcaetano/pad-rename) CLI for renaming multiple files, very useful for sprite animations frames
+- [del-half](http://github.com/webcaetano/del-half) Node CLI for delete half files.
 - [img-resize-cli](http://github.com/webcaetano/img-resize-cli) Image resize cli using jimp
 - [copy-random](http://github.com/webcaetano/copy-random) CLI for copy random target files, useful for pick random sprites from a animation
 - [flatten-dirname](https://github.com/webcaetano/flatten-dirname) CLI for flatten files to from relative folders. But keep dirname on filename.
