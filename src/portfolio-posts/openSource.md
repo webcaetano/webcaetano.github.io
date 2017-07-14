@@ -29,6 +29,7 @@ Here's a list of open-source projects of my authorship:<br>
 - [pad-rename](http://github.com/webcaetano/pad-rename) CLI for renaming multiple files, very useful for sprite animations frames
 - [del-half](http://github.com/webcaetano/del-half) Node CLI for delete half files.
 - [img-resize-cli](http://github.com/webcaetano/img-resize-cli) Image resize cli using jimp
+- [git-bump-cli](https://github.com/webcaetano/git-bump-cli) CLI for update package version and git tags it
 - [copy-random](http://github.com/webcaetano/copy-random) CLI for copy random target files, useful for pick random sprites from a animation
 - [flatten-dirname](https://github.com/webcaetano/flatten-dirname) CLI for flatten files to from relative folders. But keep dirname on filename.
 - [filename-to-dir](https://github.com/webcaetano/filename-to-dir) CLI for use filenames to create folders schema.
