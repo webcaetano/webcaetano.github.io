@@ -49,7 +49,7 @@ module.exports = function(options) {
 
 		return gulp.src('src/scripts/index.js')
 			.pipe($.webpack(webpackOptions, null, webpackChangeHandler))
-			.pipe(gulp.dest(options.tmp + '/site/scripts'))
+			.pipe(gulp.dest(options.tmp + '/scripts'))
 	}
 
 	gulp.task('scripts', function () {

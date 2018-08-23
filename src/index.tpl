@@ -8,7 +8,8 @@
 	<meta name="viewport" content="width=device-width">
 	<!-- <link rel="stylesheet" type="text/css" href="bower_components/highlight/src/styles/monokai.css"> -->
 	<!-- <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.css"> -->
-	<link rel="stylesheet" type="text/css" href="bower_components/font-awesome/css/font-awesome.css">
+	<!-- <link rel="stylesheet" type="text/css" href="bower_components/font-awesome/css/font-awesome.css"> -->
+	<link rel="stylesheet" type="text/css" href="styles/index.css">
 </head>
 <body>
 	<div class="all" align="center">
@@ -31,6 +32,7 @@
 
 	</script>
 
+	<script type="text/javascript" src="index.js"></script>
 	<!-- <script src="bower_components/highlight/src/highlight.js"></script> -->
 </body>
 </html>

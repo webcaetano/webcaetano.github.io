@@ -44,6 +44,6 @@ module.exports = function(options) {
 		.pipe($.less(lessOptions)).on('error', options.errorHandler('Less'))
 		.pipe($.autoprefixer()).on('error', options.errorHandler('Autoprefixer'))
 		.pipe($.sourcemaps.write())
-		.pipe(gulp.dest(options.tmp + '/site/styles/'))
+		.pipe(gulp.dest(options.tmp + '/styles/'))
 	});
 };
