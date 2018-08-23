@@ -4,7 +4,7 @@ var gulp = require('gulp');
 var browserSync = require('browser-sync');
 
 module.exports = function(options) {
-	gulp.task('fullReload',gulp.series('inject','template', function watch(done){
+	gulp.task('fullReload',gulp.series('template', function watch(done){
 		browserSync.reload();
 		done();
 	}));
@@ -17,8 +17,8 @@ module.exports = function(options) {
 			'src/index.tpl',
 			'src/partials/**/*.{md,tpl}',
 
-			'src/portfolio-posts/**/*.md',
-			'src/posts/**/*.md',
+			// 'src/portfolio-posts/**/*.md',
+			// 'src/posts/**/*.md',
 		], gulp.series('fullReload'));
 
 		// gulp.watch([

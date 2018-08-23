@@ -9,7 +9,8 @@ var $ = require('gulp-load-plugins')({
 
 module.exports = function(options) {
 	var dist = '';
-	gulp.task('html', gulp.series('inject',function () {
+	// gulp.task('html', gulp.series('inject',function () {
+	gulp.task('html', gulp.series(function () {
 		return gulp.src(options.tmp + '/site/injected.tpl')
 			.pipe($.useref())
 			// .pipe($.if('*.html', $.replace('bower_components', '../bower_components')))

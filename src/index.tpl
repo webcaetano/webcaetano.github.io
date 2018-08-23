@@ -1,33 +1,21 @@
 <!doctype html>
 <html>
 <head>
-	<base href="../../../">
+	<!-- <base href="../../../"> -->
 	<meta charset="utf-8">
 	<title>webCaetano</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width">
-	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-
-	<!-- build:css(./) styles/vendor.css -->
-	<link rel="stylesheet" type="text/css" href="bower_components/highlight/src/styles/monokai.css">
-	<link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.css">
+	<!-- <link rel="stylesheet" type="text/css" href="bower_components/highlight/src/styles/monokai.css"> -->
+	<!-- <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.css"> -->
 	<link rel="stylesheet" type="text/css" href="bower_components/font-awesome/css/font-awesome.css">
-	<!-- endbuild -->
-
-	<!-- build:css({.tmp/site,site}) styles/styles.css -->
-	<!-- inject:styles:css -->
-	<!-- css files will be automatically insert here -->
-	<!-- endinject -->
-	<!-- endbuild -->
 </head>
 <body>
 	<div class="all" align="center">
 		<%= header %>
 		<%= menu %>
 		<div class="mid">
-			<div class="posts">
-				<%= content %>
-			</div>
+			content
 		</div>
 		<%= footer %>
 	</div>
@@ -43,17 +31,6 @@
 
 	</script>
 
-	<!-- build:js(./) scripts/vendor.js -->
-	<script src="bower_components/highlight/src/highlight.js"></script>
-	<!-- endbuild -->
-
-
-	<!-- build:js({.tmp/site,site}) scripts/scripts.js -->
-	<!-- inject:scripts:js -->
-	<!-- js files will be automatically insert here -->
-	<!-- endinject -->
-	<!-- endbuild -->
-
-	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
+	<!-- <script src="bower_components/highlight/src/highlight.js"></script> -->
 </body>
 </html>

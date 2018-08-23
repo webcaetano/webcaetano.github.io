@@ -7,22 +7,15 @@ var util = require('util');
 module.exports = function(options) {
 	function browserSyncInit(baseDir, browser='default', done) {
 		var routes = null;
-		// if(baseDir === options.src || (util.isArray(baseDir) && baseDir.indexOf(options.src) !== -1)) {
-		// 	routes = {
-		// 		'/bower_components': 'bower_components'
-		// 	};
-		// }
-
-		var server = {
-			baseDir: baseDir,
-			routes: {
-				'/bower_components': 'bower_components'
-			}
-		};
 
 		browserSync.instance = browserSync.init({
 			startPath: '/',
-			server: server,
+			server: {
+				baseDir,
+				routes: {
+					'/bower_components': 'bower_components'
+				}
+			},
 			browser: browser,
 			notify: false,
 			open: false
@@ -31,17 +24,8 @@ module.exports = function(options) {
 		done();
 	}
 
-
 	gulp.task('serve', gulp.series('watch', browserSyncInit.bind(null,[
-		options.tmp + '/site',
+		options.tmp,
 		'.',
 	],null)));
-
-	// gulp.task('serve:dist', gulp.series(browserSyncInit.bind(null,[
-	// 	'',
-	// ],null)));
-
-	// gulp.task('serve:build:dist', gulp.series('build', browserSyncInit.bind(null,[
-	// 	'',
-	// ],null)));
 };

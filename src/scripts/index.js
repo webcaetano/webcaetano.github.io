@@ -1,5 +1,5 @@
-'use strict';
+var a = function(x=1){
+	console.log(x)
+}
 
-var x = require('./test');
-
-console.log(x)
+a();

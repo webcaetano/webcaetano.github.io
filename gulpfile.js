@@ -5,13 +5,13 @@ var gutil = require('gulp-util');
 var _ = require('lodash');
 var path = require('path');
 var fs = require('fs');
-var pkg = JSON.parse(fs.readFileSync('./package.json'));
+var tempy = require('tempy');
 
 var folder = path.basename(path.resolve(__dirname,'./'));
 var options = {
 	src: 'src',
 	dist: './',
-	tmp: '.tmp',
+	tmp: tempy.directory(),
 	errorHandler: function(title) {
 		return function(err) {
 			gutil.log(gutil.colors.red('[' + title + ']'), err.toString());
@@ -21,12 +21,8 @@ var options = {
 };
 
 _.each([
-	'github.js',
 	'scripts.js',
 	'styles.js',
-	'inject.js',
-	'markdown.js',
-	'posts.js',
 	'template.js',
 	'watch.js',
 	'server.js',
