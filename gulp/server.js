@@ -13,7 +13,6 @@ module.exports = function(options) {
 			server: {
 				baseDir,
 				routes: {
-					'/bower_components': 'bower_components'
 				}
 			},
 			browser: browser,
@@ -26,6 +25,10 @@ module.exports = function(options) {
 
 	gulp.task('serve', gulp.series('watch', browserSyncInit.bind(null,[
 		options.tmp,
+		'.',
+	],null)));
+
+	gulp.task('serve:dist', gulp.series('build', browserSyncInit.bind(null,[
 		'.',
 	],null)));
 };

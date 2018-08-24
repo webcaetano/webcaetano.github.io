@@ -38,11 +38,6 @@ module.exports = function(options) {
 		gulp.parallel('scripts','styles')
 	));
 
-	gulp.task('template:dist',gulp.series(
-		'pre-template',
-		wrapper.bind(null,'./',true,null)
-	));
-
 	gulp.task('template',gulp.series(
 		'pre-template',
 		wrapper.bind(null,options.tmp,null)

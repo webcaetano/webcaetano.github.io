@@ -24,7 +24,6 @@ module.exports = function(options) {
 					if (stats.compilation.errors && stats.compilation.errors.length)gutil.beep();
 				});
 			}],
-			externals: JSON.parse(fs.readFileSync('./bower.json','utf8')).externals,
 			output: { filename: 'index.js' }
 		};
 
