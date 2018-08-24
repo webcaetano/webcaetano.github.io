@@ -1,11 +1,14 @@
 .header {
+	@h: 400px;
 	max-width: 1000px;
 	display: inline-block;
 	width: 100%;
 	position: relative;
-	// height:300px;
 	vertical-align: top;
-	min-height:200px;
+	min-height:@h;
 	margin: 0;
+	.inside {
+		min-height:@h;
+	}
 }
 

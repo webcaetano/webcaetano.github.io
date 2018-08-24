@@ -11,19 +11,19 @@ module.exports = function(options) {
 		var lessOptions = {
 			options: [
 				'bower_components',
-				siteFolder + '/styles',
+				siteFolder + '/less',
 			]
 		};
 
 		var injectFiles = gulp.src([
-			siteFolder+'/styles/**/*.less',
-			'!' + siteFolder + '/styles/index.less',
-			'!' + siteFolder + '/styles/vendor.less'
+			siteFolder+'/less/**/*.less',
+			'!' + siteFolder + '/less/index.less',
+			'!' + siteFolder + '/less/vendor.less'
 		], { read: false });
 
 		var injectOptions = {
 			transform: function(filePath) {
-				filePath = filePath.replace(siteFolder + '/styles/', '');
+				filePath = filePath.replace(siteFolder + '/less/', '');
 				return '@import \'' + filePath + '\';';
 			},
 			starttag: '// injector',
@@ -34,8 +34,8 @@ module.exports = function(options) {
 		var indexFilter = $.filter('index.less', {restore: true});
 
 		return gulp.src([
-			siteFolder + '/styles/index.less',
-			// siteFolder + '/styles/vendor.less'
+			siteFolder + '/less/index.less',
+			// siteFolder + '/less/vendor.less'
 		])
 		// .pipe(indexFilter)
 		.pipe($.if('index.less',$.inject(injectFiles, injectOptions)))

@@ -16,18 +16,38 @@ module.exports = function(options) {
 	function wrapper(dest,dist=false,done){
 		var template = String(fs.readFileSync('src/index.tpl'));
 
-		var footer = _.template(String(fs.readFileSync('src/partials/footer.tpl')))({
-		});
-
 		var menu = _.template(String(fs.readFileSync('src/partials/menu.tpl')))({
 		});
 
+		var midAnimation = _.template(String(fs.readFileSync('src/partials/midAnimation.tpl')))({
+		});
+
+		var icon = _.template(String(fs.readFileSync('src/partials/icon.tpl')))({
+		});
+
+		var about = _.template(String(fs.readFileSync('src/partials/about.tpl')))({
+		});
+
+		var portofolio = _.template(String(fs.readFileSync('src/partials/portofolio.tpl')))({
+		});
+
+		var contact = _.template(String(fs.readFileSync('src/partials/contact.tpl')))({
+		});
+
 		var header = _.template(String(fs.readFileSync('src/partials/header.tpl')))({
+			menu,
+			midAnimation,
+			icon,
+		});
+
+		var footer = _.template(String(fs.readFileSync('src/partials/footer.tpl')))({
 		});
 
 		var content = _.template(template)({
 			header,
-			menu,
+			about,
+			portofolio,
+			contact,
 			footer,
 		});
 

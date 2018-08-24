@@ -29,7 +29,7 @@ module.exports = function(options) {
 		// }));
 
 		gulp.watch([
-			'src/styles/**/*.less',
+			'src/less/**/*.less',
 		]
 		// ,gulp.series('styles',function watch(done){
 		// 	browserSync.reload();

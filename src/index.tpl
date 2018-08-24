@@ -11,12 +11,10 @@
 <body>
 	<div class="all" align="center">
 		<%= header %>
-		<!-- <%= menu %> -->
-		<div class="mid">
-			<i class="fa fa-github"></i>
-			awdawd
-		</div>
-		<!-- <%= footer %> -->
+		<%= about %>
+		<%= portofolio %>
+		<%= contact %>
+		<%= footer %>
 	</div>
 
 	<script>

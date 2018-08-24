@@ -1,5 +1,6 @@
 <div class="menu">
-	<%
+	menu
+	<!-- <%
 	_.each([
 		{
 			link:'/#about',
@@ -24,5 +25,5 @@
 			</div>
 		`);
 	});
-	%>
+	%> -->
 </div>

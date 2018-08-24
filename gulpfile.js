@@ -25,8 +25,8 @@ _.each([
 	'styles.js',
 	'template.js',
 	'watch.js',
-	'server.js',
 	'build.js',
+	'server.js',
 ],function(file){
 	require('./gulp/' + file)(options);
 });
