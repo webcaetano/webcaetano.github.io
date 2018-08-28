@@ -1,6 +1,5 @@
 <div class="menu">
-	menu
-	<!-- <%
+	<%
 	_.each([
 		{
 			link:'/#about',
@@ -11,7 +10,7 @@
 			name:'Portfolio'
 		},
 		{
-			link:'/#contact',
+			link:'mailto:webandrecaetano@gmail.com',
 			name:'Contact'
 		},
 	],function(val){
@@ -25,5 +24,5 @@
 			</div>
 		`);
 	});
-	%> -->
+	%>
 </div>
