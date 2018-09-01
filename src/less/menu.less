@@ -1,9 +1,12 @@
 .menu {
+	.font-pt;
+	text-transform: uppercase;
+
 	position: absolute;
 	right: 10px;
 	top: 10px;
 	// .font-open;
-	font-family: Tahoma, Geneva, sans-serif;
+	// font-family: Tahoma, Geneva, sans-serif;
 	font-weight: bold;
 	font-size: 12px;
 	.menu-tab {
@@ -12,5 +15,9 @@
 		}
 		display: inline-block;
 		width: 80px;
+	}
+
+	@media screen and (max-width: 480px) {
+		display: none;
 	}
 }
