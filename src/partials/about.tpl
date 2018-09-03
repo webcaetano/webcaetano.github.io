@@ -39,7 +39,7 @@
 					</div>
 				</div>
 				<div class="skill-img">
-					<img src="images/game-ads.gif">
+					<img src="images/game_ads.gif">
 				</div>
 			</div>
 
