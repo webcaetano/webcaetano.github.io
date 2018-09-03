@@ -9,7 +9,7 @@ var $ = require('gulp-load-plugins')({
 module.exports = function(options) {
 	gulp.task('html', gulp.series('template',function () {
 		return gulp.src(options.tmp + '/index.html')
-			.pipe($.htmlmin({collapseWhitespace: true, removeComments: true}))
+			// .pipe($.htmlmin({collapseWhitespace: true, removeComments: true}))
 			.pipe(gulp.dest(options.dist))
 			.pipe($.size({ title: options.dist, showFiles: true }));
 	}));
