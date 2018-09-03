@@ -14,6 +14,14 @@
 			<a href="mailto:webandrecaetano@gmail.com"><div class="button">
 				<i class="fa fa-envelope"></i> Message me
 			</div></a>
+			<div class="social-medias">
+				<a href="https://github.com/webcaetano" target="_blank"><div class="social-div">
+					<i class="fa fa-github"></i>
+				</div></a>
+				<a href="https://twitter.com/webandrecaetano" target="_blank"><div class="social-div">
+					<i class="fa fa-twitter"></i>
+				</div></a>
+			</div>
 		</div>
 	</div>
 </div>
