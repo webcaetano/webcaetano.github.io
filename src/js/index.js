@@ -21,6 +21,7 @@ var setTick = function(){
 
 require('./midAnimation/midAnimation')(events);
 require('./adsAnimation/adsAnimation')(events);
+require('./brgolAnimation/brgolAnimation')(events);
 
 // var a = function(x=1){
 // 	console.log(x)
