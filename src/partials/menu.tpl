@@ -6,11 +6,11 @@
 			name:'About'
 		},
 		{
-			link:'/#portofolio',
+			link:'/#portfolio',
 			name:'Portfolio'
 		},
 		{
-			link:'mailto:webandrecaetano@gmail.com',
+			link:'/#contact',
 			name:'Contact'
 		},
 	],function(val){

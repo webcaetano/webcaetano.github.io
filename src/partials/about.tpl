@@ -1,5 +1,6 @@
-<div class="about">
+<div class="about" id="about">
 	<div class="inside">
+		<h2 class="sub-header" style="display:none;"></h2>
 		<div class="about-icon">
 			<img src="images/about-avatar.png">
 		</div>

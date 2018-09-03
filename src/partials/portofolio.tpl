@@ -1,5 +1,6 @@
 <div class="portofolio">
 	<div class="inside">
+		<h2 class="sub-header" id="portfolio">Portfolio</h2>
 		<div class="game-ad-animation">
 			<div class="anim" id="game_ads_iphone"></div>
 			<div class="text">
@@ -74,6 +75,5 @@
 				</div>
 			</div>
 		</div>
-		<!-- - browser games  (merge of WotS and SocketGame Sample) -->
 	</div>
 </div>
