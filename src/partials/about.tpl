@@ -24,7 +24,7 @@
 					</div>
 					<div class="skill-text">
 						Smart Contracts using:<br>
-						Solidity, Truffle, Ganache and IPFS.
+						Solidity, Web3, Truffle, Ganache and IPFS.
 					</div>
 				</div>
 			</div>
