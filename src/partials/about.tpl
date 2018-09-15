@@ -36,7 +36,8 @@
 					</div>
 					<div class="skill-text">
 						Mobile Game Ads, Blockchain-games and<Br>
-						Mobile Games. PhaserJS
+						Mobile Games.<br>
+						PhaserJS 2 and 3, PixiJS
 					</div>
 				</div>
 				<div class="skill-img">
@@ -54,7 +55,7 @@
 					</div>
 					<div class="skill-text">
 						Backend NodeJS.<br>
-						FrontEnd VueJS, AngularJS.
+						FrontEnd VueJS, React, AngularJS
 					</div>
 				</div>
 			</div>
