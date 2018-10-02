@@ -17,6 +17,9 @@
 		<div>
 			<img src="./images/game_ads.webp">
 		</div>
+		<div>
+			<iframe width="384" height="576" src="https://www.youtube.com/embed/QHxVPMUGCdY" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+		</div>
 		<br>
 
 		<div class="brgol-animation">
