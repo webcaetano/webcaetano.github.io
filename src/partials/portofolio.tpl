@@ -9,7 +9,7 @@
 				</div>
 				<div class="body">
 					I've made over 150 mobile game ads,<br>
-					In the last 3 years.<Br>
+					In the last 4 years.<Br>
 					For all mayor brands.
 				</div>
 			</div>
