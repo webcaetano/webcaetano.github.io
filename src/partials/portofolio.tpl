@@ -14,7 +14,7 @@
 				</div>
 			</div>
 		</div>
-		<div>
+		<div class="portofolio-img">
 			<img src="./images/game_ads.webp">
 		</div>
 		<div>
@@ -42,10 +42,10 @@
 				This is some screen-shoots an unfinished project of my authorship.<br>
 				It's a game based on <b>BRGOL</b>, but focused on international community.
 			</div>
-			<div class="image">
+			<div class="image portofolio-img" >
 				<img src="./images/HoS.jpg">
 			</div>
-			<div class="image">
+			<div class="image portofolio-img">
 				<img src="./images/HoS_2.jpg">
 			</div>
 		</div>
@@ -56,10 +56,10 @@
 				Live can be found here: <a href="http://webcaetano.github.io/wizz" target="_blank">http://webcaetano.github.io/wizz</a>
 			</div>
 			<div class="imageDiv">
-				<div class="image">
+				<div class="image portofolio-img">
 					<img src="./images/WotS.jpg">
 				</div>
-				<div class="image">
+				<div class="image portofolio-img">
 					<img src="./images/WotS2.jpg">
 				</div>
 			</div>
@@ -71,10 +71,10 @@
 				And his map editor.
 			</div>
 			<div class="imageDiv">
-				<div class="image">
+				<div class="image portofolio-img">
 					<img src="./images/socketGame.jpg">
 				</div>
-				<div class="image">
+				<div class="image portofolio-img">
 					<img src="./images/socketGame2.jpg">
 				</div>
 			</div>

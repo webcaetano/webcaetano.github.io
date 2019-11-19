@@ -21,6 +21,9 @@
 				<a href="https://twitter.com/webandrecaetano" target="_blank"><div class="social-div">
 					<i class="fa fa-twitter"></i>
 				</div></a>
+				<a href="https://www.instagram.com/andreindiedev/" target="_blank"><div class="social-div">
+					<i class="fa fa-instagram"></i>
+				</div></a>
 			</div>
 		</div>
 	</div>

@@ -9,8 +9,8 @@
 		</div>
 		<div class="about-text">
 			I'm a <b>Game Developer</b> and <b>Blockchain Developer</b>,<Br>
-			based on Sao Paulo, Brazil.<Br>
-			I've worked as a freelancer in past 8 years.
+			based on Itajai, Brazil.<Br>
+			I've worked as a Freelancer / Contractor<br> in past 10 years.
 		</div>
 
 		<div class="skills">
