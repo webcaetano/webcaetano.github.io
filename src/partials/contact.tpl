@@ -4,14 +4,19 @@
 		<div class="contact-div">
 			<div class="text">
 				<div class="title">
-					I'm currently <span class="green">available</span> for freelance work.
+					I'm currently <span class="red">NOT available</span> for freelance work.
 				</div>
-				<div class="body">
+				<!-- <div class="body">
 					If you've got an exciting gig, or some cool project.<br>
 					Please get in touch.
+				</div> -->
+				<div class="body">
+					Here's my contact.<br>
+					I really value my time.<br>
+					So please make it worth. Thank you.
 				</div>
 			</div>
-			<a href="mailto:webandrecaetano@gmail.com"><div class="button">
+			<a href="mailto:webandrecaetano@gmail.com"><div class="red-button button">
 				<i class="fa fa-envelope"></i> Message me
 			</div></a>
 			<div class="social-medias">

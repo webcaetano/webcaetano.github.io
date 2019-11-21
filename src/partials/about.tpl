@@ -9,8 +9,9 @@
 		</div>
 		<div class="about-text">
 			I'm a <b>Game Developer</b> and <b>Blockchain Developer</b>,<Br>
-			based on Itajai, Brazil.<Br>
-			I've worked as a Freelancer / Contractor<br> in past 10 years.
+			based on Brazil.<Br><br>
+			I've worked as a Freelancer / Contractor<br> in past 10 years.<br>
+			Mostly companies<br>from San Fransisco and Berlin.<br><br>
 		</div>
 
 		<div class="skills">
